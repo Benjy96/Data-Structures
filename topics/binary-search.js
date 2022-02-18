@@ -11,6 +11,10 @@ Expected Output: 2
 
 Input: nums = [1,3,5,6], target = 7
 Expected Output: 4
+
+*****
+Solution runtime: O(Log N)
+Why? Binary search halves the input with each iteration. A logarithm is the opposite of an exponent.
  */
 
 function test() {
