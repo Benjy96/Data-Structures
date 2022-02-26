@@ -13,6 +13,8 @@
  * 0011 - 3
  * 0100 - 4
  */
+
+// For display purposes
 function toBinary(num) {
     return parseInt(num, 10).toString(2);
 }
