@@ -14,11 +14,6 @@
  * 0100 - 4
  */
 
-// For display purposes
-function toBinary(num) {
-    return parseInt(num, 10).toString(2);
-}
-
 var a = 1;  // ... 0001
 var b = 2;  // ... 0010
 
