@@ -1,6 +1,6 @@
 /**
- * Bitwise logical operators compare each binary number, where the binary number is the binary version
- * of the decimal integer you assign. This can be useful for creating bitwise arrays/vectors, which allow you
+ * Bitwise logical operators compare each bit of a number, where the bits are the binary representation
+ * of a decimal integer you assign. This can be useful for creating bitwise arrays/vectors, which allow you
  * to store true/false (1/0) values inside a single integer, taking up less space than an array of integers
  * would.
  * 
