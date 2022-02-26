@@ -4,6 +4,9 @@
  * to store true/false (1/0) values inside a single integer, taking up less space than an array of integers
  * would.
  * 
+ * If you make an int, 1, that is 0001 in binary. If you have two of those and compare with a bitwise OR, it will
+ * compare each bit, and if either is a 1, the result will have a 1 where EITHER had a 1.
+ * 
  * 0000 - 0 
  * 0001 - 1
  * 0010 - 2
