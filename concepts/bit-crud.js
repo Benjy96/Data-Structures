@@ -31,8 +31,14 @@ function clearBit(num, i) {
     return num & mask;
 }
 
-function updateBit(num, i) {
+//Assume 1, 1, 1
+function updateBit(num, i, bitVal) {
+    var allOnesExceptNewBitPos = ~(1 << i);   // create a mask of 1s except for index to change, e.g.,    - 1101
+    var desiredBitAtPosition = bitVal << i;    // set the desired position to 1 or 0, e.g.,       - 0010
 
+    var numWithNewBitPositionCleared = num & allOnesExceptNewBitPos; // 0001 & 1101 == 0001
+
+    return numWithNewBitPositionCleared | desiredBitAtPosition; // 0001 | 0010 == 0011
 }
 
 // #region GET BIT
@@ -57,7 +63,7 @@ console.log("--- SET BIT ---");
 console.log(setBit(1,1)); // Expect 3, since 0010 | 0001 == 0011
 // #endregion
 
-// #region SET BIT
+// #region CLEAR BIT
 console.log("--- CLEAR BIT ---");
 
 //i(2): 0001 << 2 -> 0100
@@ -69,5 +75,15 @@ console.log("--- CLEAR BIT ---");
 //  1001
 console.log(clearBit(9,2));
 console.log(clearBit(9,0)); // Expect 1000 (8), as it will be 1110 & 1001 == 1000
+
+// #endregion
+
+// #region UPDATE BIT
+console.log("--- UPDATE BIT ---");
+
+// This function is saying to set 00[0]1 to 1
+// 0011 is equal to 3
+console.log(updateBit(1,1,1));
+console.log(bitUtils.toBinary(updateBit(1,1,1)));
 
 // #endregion
