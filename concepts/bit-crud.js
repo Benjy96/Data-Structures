@@ -28,7 +28,7 @@ function clearBit(num, i) {
     // Compares all 1s (except bit to clear) against original num with a bitwise AND
     // All the 1 bits in num will be kept, as 1&1 = 1, and all 0s kept, as 1&0 = 0, and the i bit will be 0 too, as we
     // set it to 1 above and then inverted it
-    return num & mask;
+    return num & allOnesExceptIndex;
 }
 
 //Assume 1, 1, 1
@@ -81,7 +81,7 @@ console.log(clearBit(9,0)); // Expect 1000 (8), as it will be 1110 & 1001 == 100
 // #region UPDATE BIT
 console.log("--- UPDATE BIT ---");
 
-// This function is saying to set 00[0]1 to 1
+// This function is saying to set the num in [] in 00[0]1 to 1
 // 0011 is equal to 3
 console.log(updateBit(1,1,1));
 console.log(bitUtils.toBinary(updateBit(1,1,1)));
