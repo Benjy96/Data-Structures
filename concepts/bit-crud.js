@@ -28,6 +28,13 @@ function updateBit(num, i) {
 }
 
 // Num (2): 0010
-// I (1): 0001 -> 0010
-// The answer should be 1, as there is a 1 at the 1 index (starting at 0, moving to the left)
-console.log(getBit(2, 1));
+// I (1): 0001 << 1 --> 0010
+// Function gets the bit at 1 index from the right, starting at 0, moving to the left
+// Answer should be 1
+console.log(bitUtils.toBinary(getBit(2, 1)));
+
+console.log(bitUtils.toBinary(getBit(2, 0)));   // Expect 0 (0010 <-)
+console.log(bitUtils.toBinary(getBit(2, 2)));   // Expect 0 (00 <- 10)
+console.log(bitUtils.toBinary(getBit(2, 3)));   // Expect 0 (0 <- 010)
+
+
