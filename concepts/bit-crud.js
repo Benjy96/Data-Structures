@@ -23,7 +23,7 @@ function setBit(num, i) {
 
 function clearBit(num, i) {
     // Would need to not affect other bits whether they are 0 or 1
-    var mask = ~(1 << i);   // ~ inverses the bits (bitwise NOT), e.g., 0010 -> 1101
+    var allOnesExceptIndex = ~(1 << i);   // ~ inverses the bits (bitwise NOT), e.g., 0010 -> 1101
 
     // Compares all 1s (except bit to clear) against original num with a bitwise AND
     // All the 1 bits in num will be kept, as 1&1 = 1, and all 0s kept, as 1&0 = 0, and the i bit will be 0 too, as we
@@ -33,10 +33,10 @@ function clearBit(num, i) {
 
 //Assume 1, 1, 1
 function updateBit(num, i, bitVal) {
-    var allOnesExceptNewBitPos = ~(1 << i);   // create a mask of 1s except for index to change, e.g.,    - 1101
+    var allOnesExceptNewBitIndex = ~(1 << i);   // create a mask of 1s except for index to change, e.g.,    - 1101
     var desiredBitAtPosition = bitVal << i;    // set the desired position to 1 or 0, e.g.,       - 0010
 
-    var numWithNewBitPositionCleared = num & allOnesExceptNewBitPos; // 0001 & 1101 == 0001
+    var numWithNewBitPositionCleared = num & allOnesExceptNewBitIndex; // 0001 & 1101 == 0001
 
     return numWithNewBitPositionCleared | desiredBitAtPosition; // 0001 | 0010 == 0011
 }
