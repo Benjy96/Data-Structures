@@ -22,7 +22,13 @@ function setBit(num, i) {
 }
 
 function clearBit(num, i) {
+    // Would need to not affect other bits whether they are 0 or 1
+    var mask = ~(1 << i);   // ~ inverses the bits (bitwise NOT), e.g., 0010 -> 1101
 
+    // Compares all 1s (except bit to clear) against original num with a bitwise AND
+    // All the 1 bits in num will be kept, as 1&1 = 1, and all 0s kept, as 1&0 = 0, and the i bit will be 0 too, as we
+    // set it to 1 above and then inverted it
+    return num & mask;
 }
 
 function updateBit(num, i) {
@@ -49,4 +55,19 @@ console.log("--- SET BIT ---");
 // i (1): 0001 << 1 --> 0010
 // 0010 | 0001 == 0011
 console.log(setBit(1,1)); // Expect 3, since 0010 | 0001 == 0011
+// #endregion
+
+// #region SET BIT
+console.log("--- CLEAR BIT ---");
+
+//i(2): 0001 << 2 -> 0100
+//num:  1001
+// ~ i -> 1011
+//  1011 &     ~i
+//  1001       num
+//  ---------
+//  1001
+console.log(clearBit(9,2));
+console.log(clearBit(9,0)); // Expect 1000 (8), as it will be 1110 & 1001 == 1000
+
 // #endregion
