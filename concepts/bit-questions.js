@@ -64,6 +64,13 @@ function q1BookVersion(N, M, j, i) {
  * How to solve?
  * Clear N at j-i indices. OR N and M.
  * Mistake I made: I didn't realise I had to shift M to the left
+ * 
+ * How did I do it differently from the book?
+ * 
+ * 1. Book did some kind of fancy subtraction thing to make right side of array, I just used
+ * a for loop to shift the bits multiple times - makes more sense that way to me.
+ * 
+ * 2. Book combined a left and right half of mask. I just made a single mask with a for loop and inverted the mask.
  */
 console.log("Result: " + bitUtils.toBinary(q1(0b10000000000, 0b10011, 6, 2))); // Expect 10001001100
 console.log("Result: " + bitUtils.toBinary(q1BookVersion(0b10000000000, 0b10011, 6, 2))); // Expect 10001001100
