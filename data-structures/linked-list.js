@@ -39,12 +39,23 @@ class Node {
         // set last node's next node to the newly created end node
         node.next = end;
     }
+
+    searchListFor(data) {
+        if(this.data == data) return this;
+        else if(this.next != null) return this.next.searchListFor(data);
+    }
 }
 
 var n = new Node(1);
 n.appendToTail(2);
 n.appendToTail(3);
 
+console.log("First node's data " + n.data);
+var x = n.searchListFor(2);
+console.log(x.data);
+console.log(x.next.data);
+
+console.log("---");
 while(n != null) {
     console.log(n.data);
     n = n.next;
