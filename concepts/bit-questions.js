@@ -24,7 +24,7 @@ function q1(N, M, j, i) {
     var nWithoutJtoI = N & mask;
 
     // N is something like 1111000011, as we cleared 6-2
-    // The end of M will be at 1, 0. We don't want to compare those.
+    // The end of M's actual values will be at N's 1 and 0 indices. We don't want to compare those.
     // So move M i places to the left, leaving 0s in their place (left shift leaves 0s from right)
     // This then gives something like M == 10011[00]
     var mWithoutBitsBeyondI = M << i;
