@@ -68,10 +68,10 @@ list.appendToTail(3);
 
 var node3 = list.searchListFor(3);
 var nodePreceding3 = list.getNodePreceding(node3);
-console.log("Node preceding 3 is: " + nodePreceding3.data);
+console.log("Added 2 and 3 to list after 1. Node preceding 3 is: " + nodePreceding3.data);
 
 console.log("---");
-console.log("First node's data " + list.data);
+console.log("First node's data " + list.data + ". The rest are:");
 var x = list.searchListFor(2);
 console.log(x.data);
 console.log(x.next.data);
@@ -79,6 +79,7 @@ console.log(x.next.data);
 list.insertIntoList(7);
 
 console.log("---");
+console.log("Added 7 to list. Now all nodes in list are:");
 while(list != null) {
     console.log(list.data);
     list = list.next;
