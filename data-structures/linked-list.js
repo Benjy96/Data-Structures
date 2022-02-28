@@ -56,9 +56,29 @@ class Node {
         this.next = secondNode;
     }
 
+    // Assumes we begin search from head of list
     getNodePreceding(node) {
         if(this.next == node) return this;
-        else return this.next.getNodePreceding(node);
+        else if(this.next != null) return this.next.getNodePreceding(node);
+    }
+
+    deleteNode(node) {
+        if(node == this) return;    // Do not delete head of list
+
+        var nodeBeforeNode = this.getNodePreceding(node);
+        var nodeAfterNode = node.next;
+
+        // set node before to point to node after - now no references to "this", so should be garbage collected
+        if(nodeAfterNode != null) nodeBeforeNode.next = nodeAfterNode;
+        else nodeBeforeNode.next = null;
+    }
+
+    printList() {
+        var current = this;
+        while(current != null) {
+            console.log(current.data);
+            current = current.next;
+        }
     }
 }
 
@@ -79,8 +99,11 @@ console.log(x.next.data);
 list.insertIntoList(7);
 
 console.log("---");
-console.log("Added 7 to list. Now all nodes in list are:");
-while(list != null) {
-    console.log(list.data);
-    list = list.next;
-}
+console.log("Added 7 to list at head. Now all nodes in list are:");
+list.printList();
+
+console.log("---");
+console.log("Delete the node with 7. Nodes are now:");
+var nodeWith2 = list.searchListFor(2);
+list.deleteNode(nodeWith2);
+list.printList();
