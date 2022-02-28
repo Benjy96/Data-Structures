@@ -56,9 +56,9 @@ class Node {
         this.next = secondNode;
     }
 
-    getNodePreceding(searchingNode) {
-        if(this.next == searchingNode) return this;
-        else return this.next.getNodePreceding(searchingNode);
+    getNodePreceding(node) {
+        if(this.next == node) return this;
+        else return this.next.getNodePreceding(node);
     }
 }
 
