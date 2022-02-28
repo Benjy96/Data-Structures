@@ -19,10 +19,6 @@ class Node {
         // set last node's next node to the newly created end node
         node.next = end;
     }
-
-    getNextNode() {
-        return this.next;
-    }
 }
 
 var n = new Node(1);
@@ -31,5 +27,5 @@ n.appendToTail(3);
 
 while(n != null) {
     console.log(n.data);
-    n = n.getNextNode();
+    n = n.next;
 }
