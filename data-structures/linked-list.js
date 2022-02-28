@@ -41,8 +41,8 @@ class Node {
     }
 
     searchListFor(data) {
-        if(this.data == data) return this;
-        else if(this.next != null) return this.next.searchListFor(data);
+        if(this.data == data) return this;  // 1 != 2, go to next line
+        else if(this.next != null) return this.next.searchListFor(data);    //next is { data: 2, ...}, will return above if in next
     }
 }
 
