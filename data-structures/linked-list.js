@@ -1,3 +1,14 @@
+/**
+ * Doubly-Linked List vs array
+ * Bad: List CANNOT access any element with constant time. Must iterate through.
+ * Good: Can add/remove items from start/end in constant time
+ * 
+ * Arrays prob better for access, linked list faster for randomly adding things to some position.
+ */
+
+/**
+ * Singly linked list.
+ */
 class Node {
     next;   // stores next node in the linked list
     data;   // stores current node's value
