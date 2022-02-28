@@ -22,8 +22,9 @@ class Node {
     next;   // stores next node in the linked list
     data;   // stores current node's value
 
-    constructor(data) {
+    constructor(data, next) {
         this.data = data;
+        this.next = next;
     }
 
     appendToTail(data) {
@@ -44,6 +45,16 @@ class Node {
         if(this.data == data) return this;  // 1 != 2, go to next line
         else if(this.next != null) return this.next.searchListFor(data);    //next is { data: 2, ...}, will return above if in next
     }
+
+    insertIntoList(data) {
+        // we are acting on n, head of list, and it needs to become the 2nd node in the list instead of head
+        // create copy of head
+        var secondNode = new Node(this.data, this.next);
+
+        // set the current head to the new data, and then set the next to the copy of head
+        this.data = data;
+        this.next = secondNode;
+    }
 }
 
 var n = new Node(1);
@@ -54,6 +65,8 @@ console.log("First node's data " + n.data);
 var x = n.searchListFor(2);
 console.log(x.data);
 console.log(x.next.data);
+
+n.insertIntoList(7);
 
 console.log("---");
 while(n != null) {
