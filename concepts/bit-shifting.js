@@ -1,3 +1,5 @@
+const bitUtils = require("./bit-utils");
+
 /**
  * Shifts x to the right count times, but will not change the sign bit (will stay pos or neg)
  * Fills in new bits with the value of the sign bit, meaning the sign bit will not change.
@@ -28,5 +30,15 @@ function repeatedLogicalShift(x, count) {
 
 var x = -93242;
 var count = 40;
-console.log(`Arithmetic shifting ${x} ${count} times: ` + repeatedArithmeticShift(x, count));
-console.log(`Logical shifting ${x} ${count} times: ` + repeatedLogicalShift(x, count));
+console.log(`Arithmetic right shifting ${x} ${count} times: ` + repeatedArithmeticShift(x, count));
+console.log(`Logical right shifting ${x} ${count} times: ` + repeatedLogicalShift(x, count));
+
+/**
+ * Shifts the bits of num i bits to the left, filling in 0s from the right
+ */
+function LeftShift(num, i) {
+    num = num << i;
+    return num;
+}
+
+console.log(`Left shifting 111...111 3 times: ` + bitUtils.toBinary(LeftShift(~0, 3)));
