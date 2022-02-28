@@ -55,21 +55,31 @@ class Node {
         this.data = data;
         this.next = secondNode;
     }
+
+    getNodePreceding(searchingNode) {
+        if(this.next == searchingNode) return this;
+        else return this.next.getNodePreceding(searchingNode);
+    }
 }
 
-var n = new Node(1);
-n.appendToTail(2);
-n.appendToTail(3);
+var list = new Node(1);
+list.appendToTail(2);
+list.appendToTail(3);
 
-console.log("First node's data " + n.data);
-var x = n.searchListFor(2);
+var node3 = list.searchListFor(3);
+var nodePreceding3 = list.getNodePreceding(node3);
+console.log("Node preceding 3 is: " + nodePreceding3.data);
+
+console.log("---");
+console.log("First node's data " + list.data);
+var x = list.searchListFor(2);
 console.log(x.data);
 console.log(x.next.data);
 
-n.insertIntoList(7);
+list.insertIntoList(7);
 
 console.log("---");
-while(n != null) {
-    console.log(n.data);
-    n = n.next;
+while(list != null) {
+    console.log(list.data);
+    list = list.next;
 }
