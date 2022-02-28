@@ -1,7 +1,16 @@
 /**
  * Doubly-Linked List vs array
- * Bad: List CANNOT access any element with constant time. Must iterate through.
- * Good: Can add/remove items from start/end in constant time
+ * 
+ * Bad: 
+ * Extra space for storing pointers
+ * Inefficient random access to items
+ * Arrays better memory locality and cache performance than random pointer jumping
+ * 
+ * Good: 
+ * Insertion/deletion is simpler
+ * No overflow unless memory actually full
+ * Moving pointers faster than moving items
+ * 
  * 
  * Arrays prob better for access, linked list faster for randomly adding things to some position.
  */
