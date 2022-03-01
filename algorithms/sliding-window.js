@@ -1,0 +1,65 @@
+/**
+ * 
+ * Sliding Window
+ * 
+ * Problem: Get longest substring with unique characters only.
+ * 
+ * Questions:
+ * Do the characters that aren't duplicated in a single string ever go below 0?
+ *      Intermediate chars never go below 0, as incremented each time seen afterwards
+ * 
+ * Why not just decrement the character we're at (the duplicate) instead of all of them, and set left
+ * to the value right away?
+ *      If the same character is repeated twice, but not in same substring, then it will go over 1, to 2+, as if
+ *      it is duplicated IN THE SAME substring, which would be incorrect.
+ * 
+ */
+
+var example = "accaccacc";   // Longest substring should be 2 - ac
+console.log(longestSubstring(example));
+// -----    VISUALISATION   ----- //
+//      a   c   c   a   c   c   a   c   c
+/**     0   1   2   3   4   5   6   7   8       LOOPS (right index)
+ * a    l   l
+ * c                        
+ * c            l   l                              
+ * a                    l            
+ * c                           
+ * c                        l   l
+ * a                                l             
+ * c
+ * c                                    l
+ */
+
+function longestSubstring(string) {
+    var longestSubstring = 0;
+    var chars = [];
+
+    var left = 0;
+    var right = 0;
+
+    while(right < string.length) {
+        var currentChar = string[right].charCodeAt(0);
+
+        // Count num times the rightmost character has been seen
+        if(!chars[currentChar] > 0) chars[currentChar] = 0;
+        chars[currentChar]++;      
+
+        // Decrement each character up to a char the same as the duplicate. 
+        // This prevents other characters going over 1 and flagging themselves as a duplicate within 
+        // a single substring, while also setting the left pointer to the start of the next substring.
+        while(chars[currentChar] > 1) {
+            var priorChar = string[left].charCodeAt(0);
+            chars[priorChar]--;
+
+            left++;
+        }
+        console.log("Right at " + right + " " + string[right] + "(" + chars[currentChar] + ")" + ", Left up to " + left + " " + string[left] + "(" + chars[string[left].charCodeAt(0)] + ")");
+
+        // Store the longest substring as of yet
+        longestSubstring = Math.max(longestSubstring, (right-left)+1);
+
+        right++;
+    }
+    return longestSubstring;
+}
