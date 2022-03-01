@@ -11,7 +11,7 @@
  * Why not just decrement the character we're at (the duplicate) instead of all of them, and set left
  * to the value right away?
  *      If the same character is repeated twice, but not in same substring, then it will go over 1, to 2+, as if
- *      it is duplicated IN THE SAME substring, which would be incorrect.
+ *      it were duplicated IN THE SAME substring, which would be incorrect.
  * 
  */
 
