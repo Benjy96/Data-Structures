@@ -33,8 +33,8 @@ console.log("The longest substring in " + example + " is " + longestSubstring(ex
 // -----  -----  -----   -----   -----  ----- //
 /**
  * STEPS:
- * 1. Move right +1 each loop:
- *      1.1 If same char recorded >1:
+ * 1. Move right +1 each loop until end of string:
+ *      1.1 While same char recorded >1:
  *          1.1.1 Decrement char at left (l)
  *          1.1.2 Move left +1
  *      1.2 Record longest sub string from last one and (right-left)+1
