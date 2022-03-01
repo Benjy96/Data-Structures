@@ -17,7 +17,7 @@
 
 var example = "accaccacc";   // Longest substring should be 2 - ac
 console.log(longestSubstring(example));
-// -----    VISUALISATION   ----- //
+// -----  -----   VISUALISATION   -----  ----- //
 //      a   c   c   a   c   c   a   c   c
 /**     0   1   2   3   4   5   6   7   8       LOOPS (right index)
  * a    l   l
@@ -30,6 +30,7 @@ console.log(longestSubstring(example));
  * c
  * c                                    l
  */
+// -----  -----  -----   -----   -----  ----- //
 /**
  * STEPS:
  * 1. Move right +1 each loop:
