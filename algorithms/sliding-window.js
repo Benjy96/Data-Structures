@@ -16,7 +16,7 @@
  */
 
 var example = "accaccacc";   // Longest substring should be 2 - ac
-console.log(longestSubstring(example));
+console.log("The longest substring in " + example + " is " + longestSubstring(example));
 // -----  -----   VISUALISATION   -----  ----- //
 //      a   c   c   a   c   c   a   c   c
 /**     0   1   2   3   4   5   6   7   8       LOOPS (right index)
@@ -64,7 +64,7 @@ function longestSubstring(string) {
 
             left++;
         }
-        console.log("Right at " + right + " " + string[right] + "(" + chars[currentChar] + ")" + ", Left up to " + left + " " + string[left] + "(" + chars[string[left].charCodeAt(0)] + ")");
+        // console.log("Right at " + right + " " + string[right] + "(" + chars[currentChar] + ")" + ", Left up to " + left + " " + string[left] + "(" + chars[string[left].charCodeAt(0)] + ")");
 
         // Store the longest substring as of yet
         longestSubstring = Math.max(longestSubstring, (right-left)+1);
