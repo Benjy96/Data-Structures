@@ -134,6 +134,11 @@ console.log("Bottom up Fib " + bottomUpFib(15));
 // Runtime: O(3^n) - base 3 as 3 recursive calls (branches per node), where n is depth of call (num steps)
 function numPossibleWaysToIncrementBetween(n) {
     if(n < 1) return 1; // Base case - a "way" up
+    // Why does this work?
+    // n-1 will call n-1, n-1, n-1... == 1
+    // n-1 will call n-1, n-2, n-3... == 1
+    // Each function will call each other function down until the stairs are complete, and then return that "way"
+    // Then finally, the sum of each number of ways will be returned
     return numPossibleWaysToIncrementBetween(n-1) + numPossibleWaysToIncrementBetween(n-2) + numPossibleWaysToIncrementBetween(n-3);
 }
 
