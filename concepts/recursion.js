@@ -133,7 +133,8 @@ console.log("Bottom up Fib " + bottomUpFib(15));
 
 // Runtime: O(3^n) - base 3 as 3 recursive calls (branches per node), where n is depth of call (num steps)
 function numPossibleWaysToIncrementBetween(n) {
-    if(n < 1) return 1; // Base case - a "way" up
+    if(n < 0) return 0;
+    if(n == 0) return 1; // Base case - a "way" up
     // Why does this work?
     // n-1 will call n-1, n-1, n-1... == 1
     // n-1 will call n-1, n-2, n-3... == 1
@@ -147,3 +148,9 @@ var n = 2;
 console.log(numPossibleWaysToIncrementBetween(n) + " ways to go up " + n + " stairs");
 
 // To memoize, you would need to store each step and ask if each prior step already been done with this step...?
+
+function numWaysToIncrementBetweenMemod(n) {
+    if(n < 1) return 1; // Base case - a "way" up
+
+    return numWaysToIncrementBetweenMemod(n-1) + numWaysToIncrementBetweenMemod(n-2) + numWaysToIncrementBetweenMemod(n-3);
+}
