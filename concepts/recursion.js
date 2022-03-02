@@ -132,25 +132,37 @@ console.log("Bottom up Fib " + bottomUpFib(15));
  */
 
 // Runtime: O(3^n) - base 3 as 3 recursive calls (branches per node), where n is depth of call (num steps)
-function numPossibleWaysToIncrementBetween(n) {
-    if(n < 0) return 0;
+function numWaysToReach(n) {
+    if(n < 0) return 0;  // You can't take 3 steps up if 1 step left
     if(n == 0) return 1; // Base case - a "way" up
-    // Why does this work?
+
+    // Why does this return work?
     // n-1 will call n-1, n-1, n-1... == 1
     // n-1 will call n-1, n-2, n-3... == 1
+    // ... will call ..., ..., ...... == 1
     // Each function will call each other function down until the stairs are complete, and then return that "way"
     // Then finally, the sum of each number of ways will be returned
-    return numPossibleWaysToIncrementBetween(n-1) + numPossibleWaysToIncrementBetween(n-2) + numPossibleWaysToIncrementBetween(n-3);
+    return numWaysToReach(n-1) + numWaysToReach(n-2) + numWaysToReach(n-3);
 }
 
 console.log("--- STAIR PROBLEM ---");
-var n = 2;
-console.log(numPossibleWaysToIncrementBetween(n) + " ways to go up " + n + " stairs");
+var n = 10;
+console.log(numWaysToReach(n) + " ways to go up " + n + " stairs");
 
 // To memoize, you would need to store each step and ask if each prior step already been done with this step...?
 
-function numWaysToIncrementBetweenMemod(n) {
-    if(n < 1) return 1; // Base case - a "way" up
+function numWaysToReachMemo(n, cache) {
+    if(n < 0) return 0;  // You can't take 3 steps up if 1 step left
+    if(n == 0) return 1; // Base case - a "way" up
 
-    return numWaysToIncrementBetweenMemod(n-1) + numWaysToIncrementBetweenMemod(n-2) + numWaysToIncrementBetweenMemod(n-3);
+    // if > -1, we have seen before, as we return 0 or 1 for a way
+    if(cache.get(n) > -1) return cache.get(n);
+
+    // cache results
+    cache.set(n, numWaysToReachMemo(n-1, cache) + numWaysToReachMemo(n-2, cache) + numWaysToReachMemo(n-3, cache));
+
+    // return results
+    return cache.get(n);
 }
+
+console.log(numWaysToReachMemo(10, new Map()) + "  ways to go up 10 stairs taking 1, 2, or 3 steps");
