@@ -103,7 +103,7 @@ console.log("Added 7 to list at head. Now all nodes in list are:");
 list.printList();
 
 console.log("---");
-console.log("Delete the node with 7. Nodes are now:");
+console.log("Delete the node with 2. Nodes are now:");
 var nodeWith2 = list.searchListFor(2);
 list.deleteNode(nodeWith2);
 list.printList();
