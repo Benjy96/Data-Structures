@@ -62,6 +62,9 @@ class Node {
         else if(this.next != null) return this.next.getNodePreceding(node);
     }
 
+    /**
+     * Deletes nodes. Sets node before the node to be deleted to point to the node after the node that is deleted.
+     */
     deleteNode(node) {
         if(node == this) return;    // Do not delete head of list
 
@@ -107,3 +110,44 @@ console.log("Delete the node with 2. Nodes are now:");
 var nodeWith2 = list.searchListFor(2);
 list.deleteNode(nodeWith2);
 list.printList();
+
+console.log("---");
+list.appendToTail(3);
+list.printList();
+deleteDuplicateDataNodes(list);
+console.log("Deleted Duplicates. List is now:");
+list.printList()
+
+/**
+ * 
+ * @param {*} node Start point to delete duplicates from
+ */
+function deleteDuplicateDataNodes(node) {
+    /**
+     * What are the most basic steps?
+     * 
+     * Loop through array
+     * Store duplicates
+     * Delete duplicates
+     *      Remove reference to them
+     *          Need to take preceding node and clear its next reference
+     * 
+     */
+
+    var duplicates = new Set();
+    var prev = new Node();
+
+    // 1. Loop through list
+    while(node != null) {
+        if(duplicates.has(node.data) == false) {
+            // 2. Store data to find duplicates
+            duplicates.add(node.data);
+            // Store previous node so we can fall back to it if we find a duplicate in next loop
+            prev = node;
+        } else {
+            // 3. If we have seen this data before, remove reference to this node - currently prev.next == node
+            prev.next = node.next;
+        }
+        node = node.next;
+    }
+}
