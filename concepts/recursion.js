@@ -107,3 +107,38 @@ console.log("Memo Fib Nodes generated: " + numNodesMemo);   // 23 nodes !!!!!
 console.log("Memo Fib w/ Internal Map: " + fibonacciV2(15, new Map()));
 
 console.log("Bottom up Fib " + bottomUpFib(15));
+
+/**
+ * 
+ * PROBLEM: Child running up staircase with n steps, and can either hop 1, 2, or 3 steps at a time. Implement
+ *          a method to count how many possible ways the child can run up the stairs.
+ * 
+ *          i.e., 1 10x times is 1 way.
+ * 
+ * Lol, techically 3 "ways" to do it, as 1 or 2 or 3 at a time. What it means though is how many combinations of steps
+ * can they take to get up the stairs, e.g., they may go 1, 3, 2, 1, 3, 2, until n reached.
+ * 
+ * How to solve?
+ * 
+ *  Combinations
+ *  1+1+1....+1
+ *  1+2+1+1....
+ *  1+2+3+1+2+3
+ * 
+ *  How do we count all those?
+ * 
+ *  What is the base case? Length being reached
+ * 
+ */
+
+// Runtime: O(3^n) - base 3 as 3 recursive calls (branches per node), where n is depth of call (num steps)
+function numPossibleWaysToIncrementBetween(n) {
+    if(n < 1) return 1; // Base case - a "way" up
+    return numPossibleWaysToIncrementBetween(n-1) + numPossibleWaysToIncrementBetween(n-2) + numPossibleWaysToIncrementBetween(n-3);
+}
+
+console.log("--- STAIR PROBLEM ---");
+var n = 2;
+console.log(numPossibleWaysToIncrementBetween(n) + " ways to go up " + n + " stairs");
+
+// To memoize, you would need to store each step and ask if each prior step already been done with this step...?
