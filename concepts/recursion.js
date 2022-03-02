@@ -23,12 +23,19 @@
  * 
  */
 
-var numNodes = 0;
+// Memoization - Caching. What if we've already calculated the fib value? Why redo?
+// How to store? Key: Fib n (stage). Value: Result of that node's continuation.
+var fibMap = new Map();
+
+var numNodesMemo = 0;
 // n == 4
-function fibonacci(n) {
-    numNodes++;
+function fibonacciMemo(n) {
+    numNodesMemo++;
     if(n == 0) return 0;
     if(n == 1) return 1;
+
+    // If we have already calculated the fib for this stage, return it
+    if(fibMap.get(n)) return fibMap.get(n);
 
     // Notice each x + x as a node counts up to 8, and then + 1 for root node is 9 == 2^n + 1
     // return 3 + 2
@@ -36,8 +43,27 @@ function fibonacci(n) {
             // Left: return 1 + 0   == 1
             // Right:               == 1
         // Right: return 1 + 0      == 1
+    fibMap.set(n, fibonacciMemo(n-1) + fibonacciMemo(n-2));
+    return fibMap.get(n);
+}
+
+console.log(fibonacciMemo(4));
+console.log("Nodes generated: " + numNodesMemo);
+
+var numNodes = 0;
+function fibonacci(n) {
+    numNodes++;
+    if(n == 0) return 0;
+    if(n == 1) return 1;
+
     return fibonacci(n-1) + fibonacci(n-2);
 }
 
-console.log(fibonacci(4));
-console.log("Nodes generated: " + numNodes);
+console.log("----- MEMOIZATION -----");
+
+console.log(fibonacci(15));
+console.log("Normal fibonacci Nodes generated: " + numNodes);   // 1973 nodes
+
+numNodesMemo = 0;
+console.log(fibonacciMemo(15));
+console.log("Memo Fib Nodes generated: " + numNodesMemo);   // 23 nodes !!!!!
