@@ -8,10 +8,12 @@
  * n:   0, 1, 2, 3, 4, 5            
  * 
  * How to solve?
- * Bottom-up:
  *      Solve for simple case - 0 & 1 just return those numbers (since fib adds two nums at a time)
  *      Build solution for next case off prior case - what about when n is 3? Return prior number (-1) + prior 2nd number (-2)
- * Top-down
+ * 
+ * 2 Approaches:
+ * Bottom-up - build off each step
+ * Top-down - split into subproblems/nodes
  * 
  * -------
  * 
@@ -63,6 +65,24 @@ function fibonacciV2(n) {
     return fibonacciMemoV2(n, new Map());
 }
 
+// Bottom-up is where you build off each result for next result
+// Top-down is the other methods where you divide into subproblems (dividing into the recursive calls / nodes)
+function bottomUpFib(n) {
+    if(n == 0) return n;
+    var a = 0;  // base case (first fib)
+    var b = 1;  // base case (second fib)
+
+    // start at first non-base case
+    for(var i = 2; i < n; i++) {
+        var c = a + b;  // current fib number
+
+        // increment temp values to -1 and current fib
+        a = b;
+        b = c;
+    }
+    return a + b;
+}
+
 console.log(fibonacciMemo(4));
 console.log("Nodes generated: " + numNodesMemo);
 
@@ -85,3 +105,5 @@ console.log(fibonacciMemo(15));
 console.log("Memo Fib Nodes generated: " + numNodesMemo);   // 23 nodes !!!!!
 
 console.log("Memo Fib w/ Internal Map: " + fibonacciV2(15, new Map()));
+
+console.log("Bottom up Fib " + bottomUpFib(15));
