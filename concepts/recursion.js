@@ -47,6 +47,22 @@ function fibonacciMemo(n) {
     return fibMap.get(n);
 }
 
+// This version handles map internally
+function fibonacciMemoV2(n, map) {
+    if(n == 0 || n == 1) return n;
+
+    // If fib branch already calculated, return
+    if(map.get(n)) return map.get(n);
+
+    // Else calculate and cache
+    map.set(n, fibonacciMemoV2(n-1, map) + fibonacciMemoV2(n-2, map));
+    return map.get(n);
+}
+
+function fibonacciV2(n) {
+    return fibonacciMemoV2(n, new Map());
+}
+
 console.log(fibonacciMemo(4));
 console.log("Nodes generated: " + numNodesMemo);
 
@@ -67,3 +83,5 @@ console.log("Normal fibonacci Nodes generated: " + numNodes);   // 1973 nodes
 numNodesMemo = 0;
 console.log(fibonacciMemo(15));
 console.log("Memo Fib Nodes generated: " + numNodesMemo);   // 23 nodes !!!!!
+
+console.log("Memo Fib w/ Internal Map: " + fibonacciV2(15, new Map()));
