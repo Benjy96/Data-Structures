@@ -132,6 +132,9 @@ function deleteDuplicateDataNodes(node) {
      *      Remove reference to them
      *          Need to take preceding node and clear its next reference
      * 
+     * [prev]-->[node]-->[next]
+     * [prev]-->      -->[next]
+     * 
      */
 
     var duplicates = new Set();
