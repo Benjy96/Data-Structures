@@ -158,8 +158,17 @@ function numWaysToReachMemo(n, cache) {
     // if > -1, we have seen before, as we return 0 or 1 for a way
     if(cache.get(n) > -1) return cache.get(n);
 
-    // cache results
+    // cache results - if we've seen this value of n before, return cached value
+    // How does this work for the case where n-1, n-1, n-1.... == 1 ?
+    // Will go to bottom values first as we return from BASE
+    // Essentially, we are caching how many ways there are to reach n when n steps left
+    // If 1 step left, only 1 way left, as n-1 == 1, n-2 == 0, n-3 ==0
+    // So, we cache that, and when we get ready to call 1-1, 1-2, 1-3 (again), we won't enter methods, as we already know
+    // that when n is 1, only 1 way
+    // Key: 1 -> 1 // I.e., when 1 step left, 1 way
     cache.set(n, numWaysToReachMemo(n-1, cache) + numWaysToReachMemo(n-2, cache) + numWaysToReachMemo(n-3, cache));
+
+    console.log("Cache " + n + " steps left " + cache.get(n) + " way");
 
     // return results
     return cache.get(n);
