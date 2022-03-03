@@ -21,8 +21,12 @@ function test() {
     var test1 = (SearchInsert([1,3,5,6], 5) == 2) ? "Pass" : "Fail";
     var test2 = (SearchInsert([1,3,5,6], 7) == 4) ? "Pass" : "Fail";
 
+    var nums = [1,2,3,5,6,7,8,9,14,21,57,73,101,151,200,201,202];
+    var recursiveTest = (recursiveBinarySearch(nums, 7, 0, nums.length) == 5) ? "Pass" : "Fail";
+
     console.log(test1);
     console.log(test2);
+    console.log("Recursive test: " + recursiveTest);
 }
 
 function SearchInsert(nums, target) {
@@ -50,6 +54,29 @@ function SearchInsert(nums, target) {
     // base case return left, as left will be the pointer to end on final value as while loop
     // terminates once left exceeds right
     return left;
+}
+
+function recursiveBinarySearch(nums, target, left, right) {
+    // Base Case - if target in middle
+    var midpoint = Math.floor(((right - left) / 2)) + left;
+    if(nums[midpoint] == target) return midpoint;
+
+    // Base Case - no match
+    if(left >= right) return null;
+
+    // Recursive cases - set new left/right of array
+    // target in left side of array
+    if(nums[midpoint] > target) {
+        // set right
+        right = midpoint;
+        return recursiveBinarySearch(nums, target, left, right);
+    }
+    // target in right side of array
+    else {
+        // set left
+        left = midpoint;
+        return recursiveBinarySearch(nums, target, left, right);
+    }
 }
 
 test();
