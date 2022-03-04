@@ -214,6 +214,10 @@ console.log("Random pivot quick sort is " + (randomTime / zeroTime) + " times th
 //            (to make new left/right arrays), giving n, which overall is n * log(n)
 // 0 pivot: n^2 - we split the array n times, (as we are at 0, and split for 1, 2, .... 10, 11 ....) 
 //          then iterate over n elements to create the new arrays, giving n*n, or n^2
+// FOR EXAMPLE: ordered array of 8.
+//  Mid pivot counts over n for 4 then 2
+//  0 pivot counts over n for 7, then 6, then 5, then 4....
+//      it is repeating counts over the same elements
 console.log("Midway pivot quick sort is " + (midTime / zeroTime) + " times the duration of 0 pivot quick sort");
 
 
