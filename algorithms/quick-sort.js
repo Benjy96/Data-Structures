@@ -201,7 +201,6 @@ console.log("Num halfway pivot QS calls: " + numQSCalls);
 console.log("Num random pivot QS calls: " + numRandomPivotCalls);
 console.log("Num 0 pivot QS calls: " + num0PivotCalls);
 
-// 0 pivot is faster than random / midway pivot
 console.log("\n");
 if(unorderedTest) console.log("When list is completely unordered:");
 else console.log("When list is mostly ordered:");
