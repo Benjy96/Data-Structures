@@ -209,6 +209,9 @@ console.log("Random pivot quick sort is " + (randomTime / zeroTime) + " times th
 // For ordered, with large array (40 elements+), mid pivot is better performance, whereas at 20, roughly same
 // 20 log2 20 == 86
 // 40 log2 40 == 212
+// For an ordered list:
+// Mid pivot: n log n - we are splitting the array in half n times
+// 0 pivot: n^2 - we are checking each element in the array n times
 console.log("Midway pivot quick sort is " + (midTime / zeroTime) + " times the duration of 0 pivot quick sort");
 
 
