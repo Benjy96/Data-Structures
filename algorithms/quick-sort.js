@@ -166,6 +166,7 @@ function quickSort0Pivot(array) {
 }
 
 var unordered = [1,9,24,3,12,2,22,23,43,56,33,73,89,101,4,3,7,17,25,23,4,3,9,11,23,66,23,43,56,33,73,89,1,4,3,2,8,19,23,44,121];
+console.log("Unordered Length: " + unordered.length);
 console.log("Midway: " + quickSort(unordered));
 console.log("Random: " + quickSortRandomPivot(unordered));
 console.log("0: " + quickSort0Pivot(unordered));
