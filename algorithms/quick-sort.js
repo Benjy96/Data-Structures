@@ -206,7 +206,9 @@ if(unorderedTest) console.log("When list is completely unordered:");
 else console.log("When list is mostly ordered:");
 // No real consistent difference, 0 pivot seems faster most often
 console.log("Random pivot quick sort is " + (randomTime / zeroTime) + " times the duration of 0 pivot quick sort");
-// With large array (40 elements+), mid pivot is better performance
+// With large array (40 elements+), mid pivot is better performance, whereas at 20, roughly same
+// 20 log2 20 == 86
+// 40 log2 40 == 212
 console.log("Midway pivot quick sort is " + (midTime / zeroTime) + " times the duration of 0 pivot quick sort");
 
 
