@@ -8,6 +8,7 @@
  * Divide Case: Anything over length of 2: Split until length <= 2
  * 
  * Worst Case Runtime: O(n^2)
+ * Worst Case Space: O(n)
  * If the pivot is 0 (start of array), and array is already sorted, then:
  * At each level (n (or n-2) levels), you iterate through (roughly, avg 1/2 n) n elements
  * 
@@ -19,6 +20,12 @@
  * 
  * So for sorted array of 6 elements, you iterate through an array 4 times. We don't count the -2 or on average
  * half array size since it's a constant, giving n^2.
+ * 
+ * Average Case Runtime: O(n log(n))
+ * At each level, we touch n elements.
+ * If pivot is middle, we split log(n) times, instead of n like when pivot is 0.
+ * So we touch n elements log(n) times. O(n) * O(log(n)) == O(n log(n))
+ * 
  */
 function quickSort(array) {
     // Base Case - nothing to sort
@@ -35,12 +42,15 @@ function quickSort(array) {
         return array;
     }
 
-    var pivot = array[0];
+    var pivotIndex = Math.floor(array.length / 2);
+    var pivot = array[pivotIndex];
     var left = []
     var right = [];
 
     // Store elements bigger than pivot in right, smaller in left
-    for(var i = 1; i < array.length; i++) {
+    for(var i = 0; i < array.length; i++) {
+        if(i == pivotIndex) continue;   // Skip next part of loop, don't need to compare pivot to pivot
+
         if(array[i] > pivot) {
             right[right.length] = array[i];
         }
