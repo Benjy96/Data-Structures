@@ -211,7 +211,7 @@ console.log("Random pivot quick sort is " + (randomTime / zeroTime) + " times th
 // 40 log2 40 == 212
 // For an ordered list:
 // Mid pivot: n log n - we split the array in half n times, giving log n, and then iterate over n elements in total (to make new left/right arrays), giving n
-// 0 pivot: n^2 - we are checking each element in the array n times
+// 0 pivot: n^2 - we split the array n times, then iterate over n elements to create the new arrays, giving n*n, or n^2
 console.log("Midway pivot quick sort is " + (midTime / zeroTime) + " times the duration of 0 pivot quick sort");
 
 
