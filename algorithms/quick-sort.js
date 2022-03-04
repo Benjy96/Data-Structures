@@ -165,13 +165,13 @@ function quickSort0Pivot(array) {
     return quickSort0Pivot(left).concat(pivot, quickSort0Pivot(right));
 }
 
-var unordered = [1,9,24,3,12,2,22,23,43,56,33,73,89,101,4,3,7,17,25,23,4,3,9,11,23,66];
+var unordered = [1,9,24,3,12,2,22,23,43,56,33,73,89,101,4,3,7,17,25,23,4,3,9,11,23,66,23,43,56,33,73,89,1,4,3,2,8,19,23,44,121];
 console.log("Midway: " + quickSort(unordered));
 console.log("Random: " + quickSortRandomPivot(unordered));
 console.log("0: " + quickSort0Pivot(unordered));
 
 console.log("Num halfway pivot QS calls: " + numQSCalls);
-console.log("Num halfway random pivot QS calls: " + numRandomPivotCalls);
+console.log("Num random pivot QS calls: " + numRandomPivotCalls);
 console.log("Num 0 pivot QS calls: " + num0PivotCalls);
 
 
