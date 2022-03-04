@@ -7,6 +7,18 @@
  * Base Case: 2, 1 - return smaller value?
  * Divide Case: Anything over length of 2: Split until length <= 2
  * 
+ * Worst Case Runtime: O(n^2)
+ * If the pivot is 0 (start of array), and array is already sorted, then:
+ * At each level (n (or n-2) levels), you iterate through (roughly, avg 1/2 n) n elements
+ * 
+ * [1,2,3,4,5,6]
+ * [] + 1 + [2,3,4,5,6] - Iterate through right to create new list
+ * [] + 2 + [3,4,5,6]   - Iterate through right to create new list
+ * [] + 3 + [4,5,6]     - Iterate through right to create new list
+ * [] + 4 + [5,6]       - Base case, return ordered out of the 2
+ * 
+ * So for sorted array of 6 elements, you iterate through an array 4 times. We don't count the -2 or on average
+ * half array size since it's a constant, giving n^2.
  */
 function quickSort(array) {
     // Base Case - nothing to sort
