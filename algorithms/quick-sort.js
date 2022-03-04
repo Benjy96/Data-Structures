@@ -1,3 +1,4 @@
+const {performance} = require('perf_hooks');
 /**
  * Divide & Conquer Problem-solving Method:
  * 1. Base case
@@ -165,14 +166,47 @@ function quickSort0Pivot(array) {
     return quickSort0Pivot(left).concat(pivot, quickSort0Pivot(right));
 }
 
-var unordered = [1,9,24,3,12,2,22,23,43,56,33,73,89,101,4,3,7,17,25,23,4,3,9,11,23,66,23,43,56,33,73,89,1,4,3,2,8,19,23,44,121];
+// SWITCH FOR WHICH LIST TO SORT
+var unorderedTest = 1;
+
+var unordered = [3,55,1,9,24,17,25,56,33,73,3,12,2,22,23,43,56,33,73,89,101,4,3,7,17,25,56,33,73,89,101,4,3,7,17,25,23,4,3,9,11,23,66,23,43,56,33,73,89,1,4,3,2,8,19,23,44,121];
+var kindaOrdered = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,23,43,67,77,88,50,90,91,92,93,94,95,101,121,122,123,155,167,177,188,199,202,204];
 console.log("Unordered Length: " + unordered.length);
-console.log("Midway: " + quickSort(unordered));
-console.log("Random: " + quickSortRandomPivot(unordered));
-console.log("0: " + quickSort0Pivot(unordered));
+
+var start = performance.now();
+// console.log("Midway: " + quickSort(unordered));
+if(unorderedTest) quickSort(unordered);
+else quickSort(kindaOrdered);
+var end = performance.now();
+var midTime = end-start;
+console.log("Midway time: " + midTime + "\n");
+
+var start = performance.now();
+// console.log("Random: " + quickSortRandomPivot(unordered));
+if(unorderedTest) quickSortRandomPivot(unordered);
+else quickSortRandomPivot(kindaOrdered);
+var end = performance.now();
+var randomTime = end-start;
+console.log("Random time: " + randomTime + "\n");
+
+var start = performance.now();
+// console.log("0: " + quickSort0Pivot(unordered));
+if(unorderedTest) quickSort0Pivot(unordered);
+else quickSort0Pivot(kindaOrdered);
+var end = performance.now();
+var zeroTime = end - start;
+console.log("0 time: " + zeroTime + "\n");
 
 console.log("Num halfway pivot QS calls: " + numQSCalls);
 console.log("Num random pivot QS calls: " + numRandomPivotCalls);
 console.log("Num 0 pivot QS calls: " + num0PivotCalls);
+
+// 0 pivot is faster than random / midway pivot
+console.log("\n");
+if(unorderedTest) console.log("When list is completely unordered:");
+else console.log("When list is mostly ordered:");
+console.log("Random pivot quick sort is " + (randomTime / zeroTime) + " times the duration of 0 pivot quick sort");
+console.log("Midway pivot quick sort is " + (midTime / zeroTime) + " times the duration of 0 pivot quick sort");
+
 
 
