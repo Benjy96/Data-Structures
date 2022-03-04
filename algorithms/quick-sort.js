@@ -43,9 +43,10 @@ function quickSort(array) {
     // [] + 1 + [9,3,12,2,22]
         // TOP-LEVEL LEFT: []
         // TOP-LEVEL PIVOT: 1
-        // TOP-LEVEL RIGHT: [3,2] + 9 + [12,22] ---> [2,3] + 9 + [12,22]
-            // Left: [2,3]              BASE CASE RETURNS
-            // Right: [12,22]           BASE CASE RETURNS
+        // TOP-LEVEL RIGHT: [2,3] + 9 + [12,22]
+            // Left: [3,2]      BASE CASE LENGTH == 2, swaps and returns
+            // Pivot: 9
+            // Right: [12,22]   BASE CASE LENGTH == 2, returns
     return quickSort(left).concat(pivot, quickSort(right));
 }
 
