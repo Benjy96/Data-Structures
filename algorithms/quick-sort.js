@@ -209,9 +209,11 @@ console.log("Random pivot quick sort is " + (randomTime / zeroTime) + " times th
 // For ordered, with large array (40 elements+), mid pivot is better performance, whereas at 20, roughly same
 // 20 log2 20 == 86
 // 40 log2 40 == 212
-// For an ordered list:
-// Mid pivot: n log n - we split the array in half n times, giving log n, and then iterate over n elements in total (to make new left/right arrays), giving n
-// 0 pivot: n^2 - we split the array n times, then iterate over n elements to create the new arrays, giving n*n, or n^2
+// --- Big O Time For an ordered list:
+// Mid pivot: n log n - we split the array in half n times, giving log n, and then iterate over n elements in total 
+//            (to make new left/right arrays), giving n, which overall is n * log(n)
+// 0 pivot: n^2 - we split the array n times, (as we are at 0, and split for 1, 2, .... 10, 11 ....) 
+//          then iterate over n elements to create the new arrays, giving n*n, or n^2
 console.log("Midway pivot quick sort is " + (midTime / zeroTime) + " times the duration of 0 pivot quick sort");
 
 
