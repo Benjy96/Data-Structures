@@ -167,7 +167,7 @@ function quickSort0Pivot(array) {
 }
 
 // SWITCH FOR WHICH LIST TO SORT
-var unorderedTest = 1;
+var unorderedTest = 0;
 
 var unordered = [3,55,1,9,24,17,25,56,33,73,3,12,2,22,23,43,56,33,73,89,101,4,3,7,17,25,56,33,73,89,101,4,3,7,17,25,23,4,3,9,11,23,66,23,43,56,33,73,89,1,4,3,2,8,19,23,44,121];
 var kindaOrdered = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,23,43,67,77,88,60,90,91,92,93,94,95,101,121,122,123,155,167,177,188,199,202,204,205,206,207,208,209,210,211,311,411,511,611,711,722,733,744,755];
@@ -206,7 +206,7 @@ if(unorderedTest) console.log("When list is completely unordered:");
 else console.log("When list is mostly ordered:");
 // No real consistent difference, 0 pivot seems faster most often
 console.log("Random pivot quick sort is " + (randomTime / zeroTime) + " times the duration of 0 pivot quick sort");
-// With large array (40 elements+), mid pivot is better performance, whereas at 20, roughly same
+// For ordered, with large array (40 elements+), mid pivot is better performance, whereas at 20, roughly same
 // 20 log2 20 == 86
 // 40 log2 40 == 212
 console.log("Midway pivot quick sort is " + (midTime / zeroTime) + " times the duration of 0 pivot quick sort");
