@@ -10,7 +10,7 @@ class x {
 
 function alterProperties(object) {
     object.age = 15;
-    object.name = "Tester Two";
+    object.name = "Tester Two";     // accesses the address and alters properties of original testObject
 }
 
 function reassignObj(object) {
