@@ -116,7 +116,18 @@ list.appendToTail(3);
 list.printList();
 deleteDuplicateDataNodes(list);
 console.log("Deleted Duplicates. List is now:");
-list.printList()
+list.printList();
+
+console.log("--- Interview Question 2: Algo to return Kth to last node");
+list.appendToTail(4);
+list.appendToTail(5);
+list.appendToTail(6);
+list.appendToTail(7);
+list.appendToTail(8); 
+list.appendToTail(9);   // last element will be 9
+list.printList();
+var numNodesBeforeLast = 3;
+console.log("The node " + numNodesBeforeLast + " nodes before last is " + returnKthToLast(list, numNodesBeforeLast));
 
 /**
  * 
@@ -153,4 +164,28 @@ function deleteDuplicateDataNodes(node) {
         }
         node = node.next;
     }
+}
+
+/**
+ * Problem: Implement an algorithm to find the kth to last element of a singly linked list
+ * Input: Head of a singly-linked list and the position before last you want to find. k==0 means the last node.
+ * Output: The kth node before the last
+ * 
+ * How to solve?
+ * 1. Store each previous node with an index? In an array? Would be O(n) space & time?
+ */
+function returnKthToLast(node, k) {
+    var count = 0;
+    var nodeArray = [];
+    // create a backwards copy of prior list
+    while(node.next != null) {
+        nodeArray[count] = node.data;
+        node = node.next;
+        count++;
+    }
+    // assign outside loop, as the last node will have node.next == null and loop will exit
+    nodeArray[count] = node.data;   
+
+    // adjust with -1 as if an array was length 1, first index to access would be 0
+    return nodeArray[(nodeArray.length-1) - k];
 }
