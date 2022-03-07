@@ -173,6 +173,9 @@ function deleteDuplicateDataNodes(node) {
  * 
  * How to solve?
  * 1. Store each previous node with an index? In an array? Would be O(n) space & time?
+ * 
+ * Space Complexity: O(n) - as we store an array of elements the same length as the list
+ * Time Complexity: O(n) - as we iterate through the list until the end
  */
 function returnKthToLast(node, k) {
     var count = 0;
