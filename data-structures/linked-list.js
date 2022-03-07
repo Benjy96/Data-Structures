@@ -128,6 +128,8 @@ list.appendToTail(9);   // last element will be 9
 list.printList();
 var numNodesBeforeLast = 3;
 console.log("The node " + numNodesBeforeLast + " nodes before last is " + returnKthToLast(list, numNodesBeforeLast));
+console.log("--- RECURSIVE METHODS FOR KTH TO LAST ---");
+printKthToLastRecursive(list, 2);
 
 /**
  * 
@@ -191,4 +193,28 @@ function returnKthToLast(node, k) {
 
     // adjust with -1 as if an array was length 1, first index to access would be 0
     return nodeArray[(nodeArray.length-1) - k];
+}
+
+/**
+ * Recursive function requires base / recursive case
+ * 
+ * Approach without returning: Print each value (k), so you can see what each is
+ * Could do in a loop too
+ * 
+ */
+// Comments describe base case with the list: 7,1,3,4,5,6,7,8,9
+function printKthToLastRecursive(node, k) {
+    if(node == null) return 0;  // node == 9.next == null, return 0
+
+    // Now up a level. index now == 0 + 1, or 1
+    var index = printKthToLastRecursive(node.next, k) + 1;
+
+    // 1 != 2
+    if(index-1 == k) {
+        // index -1 to adjust for 0-based indices (base case is 1 - 0+1)
+        console.log(index-1 + "th to last node is " + node.data);
+    }
+    
+    // return 1 to this function
+    return index;
 }
