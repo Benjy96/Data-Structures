@@ -130,6 +130,9 @@ var numNodesBeforeLast = 3;
 console.log("The node " + numNodesBeforeLast + " nodes before last is " + returnKthToLast(list, numNodesBeforeLast));
 console.log("--- RECURSIVE METHODS FOR KTH TO LAST ---");
 printKthToLastRecursive(list, 2);
+console.log("Iterative: 3th to last is " + returnKthToLastIterative(list, 3));
+console.log("Iterative: 0th to last is " + returnKthToLastIterative(list, 0));
+
 
 /**
  * 
@@ -196,10 +199,13 @@ function returnKthToLast(node, k) {
 }
 
 /**
- * Recursive function requires base / recursive case
  * 
  * Approach without returning: Print each value (k), so you can see what each is
- * Could do in a loop too
+ * 
+ * Base Case: 
+ *  End of list, return 0
+ *  Found index, print node data
+ * Recursive Case: Move to next node
  * 
  */
 // Comments describe base case with the list: 7,1,3,4,5,6,7,8,9
@@ -217,4 +223,30 @@ function printKthToLastRecursive(node, k) {
     
     // return 1 to this function
     return index;
+}
+
+/**
+ * 
+ * Space two pointers k distance apart, and return the slower pointer when the faster
+ * pointer goes out of bounds
+ * 
+ * Space: O(1) - will be storing two variables (constant usage)
+ * Time: O(n) - may potentially iterate over the whole list
+ */
+function returnKthToLastIterative(node, k) {
+    var fastPointer = node;
+    var slowPointer = node;
+
+    // Set the pointers k distance apart
+    for(var i = 0; i < k; i++) {
+        if(fastPointer == null) return null;    // Too big of a k value given, i.e., 10th val when only 4
+        fastPointer = fastPointer.next;
+    }
+
+    // Move both at same speed now and return once we get to the end
+    while(fastPointer.next != null) {
+        fastPointer = fastPointer.next;
+        slowPointer = slowPointer.next;
+    }
+    return slowPointer.data;
 }
