@@ -133,6 +133,18 @@ printKthToLastRecursive(list, 2);
 console.log("Iterative: 3th to last is " + returnKthToLastIterative(list, 3));
 console.log("Iterative: 0th to last is " + returnKthToLastIterative(list, 0));
 
+console.log("--- METHOD TO DELETE NODE IN MIDDLE OF LIST ---");
+var prevNode = list.searchListFor(4);
+var node = list.searchListFor(5);
+list.printList();
+console.log("Deleted " + node.data);
+deleteNodeInList(node);
+list.printList();
+// No sign of the 5 node in prev, node to delete, or next: No references to it anymore
+// console.log(node);
+// console.log(node.next);
+// console.log(prevNode);
+
 
 /**
  * 
@@ -249,4 +261,25 @@ function returnKthToLastIterative(node, k) {
         slowPointer = slowPointer.next;
     }
     return slowPointer.data;
+}
+
+/**
+ * Implement an algorithm to delete a node in the middle of a singly linked list, given
+ * only access to that node.
+ */
+function deleteNodeInList(nodeToDelete) {
+    // Need to keep this node, as previous would point to it
+    // Can overwrite node to delete with next, and delete (remove refs to) next, so this takes place of next
+    var nextNode = nodeToDelete.next;
+
+    // Overwrite the node to delete - make same as "next" node
+    // Previous will still be pointing to node to delete
+    nodeToDelete.data = nextNode.data;
+    nodeToDelete.next = nextNode.next;
+
+    // Remove the next node
+    nextNode.next = null;            // objects with no references to them will be garbage collected
+    nextNode.data = null;
+
+    // When an object is not referencing nor being referenced by any other object, it is garbage collected.
 }
