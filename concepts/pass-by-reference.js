@@ -30,6 +30,7 @@ function reassignObj(object) {
 function clearObj(object) {
     object = null;      // doesn't clear testObj pointer (which points to testObj), 
                         // but a copy of testObj (which points to testObj)
+                        // i.e., testObj will still point to testObj, but object will be null
 }
 
 var testObj = new x(5, "Tester JUAN");
