@@ -138,12 +138,16 @@ var prevNode = list.searchListFor(4);
 var node = list.searchListFor(5);
 list.printList();
 console.log("Deleted " + node.data);
-deleteNodeInList(node);
+deleteNodeInList(list, node);
 list.printList();
 // No sign of the 5 node in prev, node to delete, or next: No references to it anymore
 // console.log(node);
 // console.log(node.next);
 // console.log(prevNode);
+node = list.searchListFor(9);
+deleteNodeInList(list, node);
+console.log("Deleted last");
+list.printList();
 
 
 /**
@@ -266,8 +270,13 @@ function returnKthToLastIterative(node, k) {
 /**
  * Implement an algorithm to delete a node in the middle of a singly linked list, given
  * only access to that node.
+ * 
+ * Solution Pattern: Swap
+ * 
+ * Any edge cases? Last node?
  */
-function deleteNodeInList(nodeToDelete) {
+function deleteNodeInList(list, nodeToDelete) {
+    if(nodeToDelete.next == null) return list.deleteNode(nodeToDelete);
     // Need to keep this node, as previous would point to it
     // Can overwrite node to delete with next, and delete (remove refs to) next, so this takes place of next
     var nextNode = nodeToDelete.next;
