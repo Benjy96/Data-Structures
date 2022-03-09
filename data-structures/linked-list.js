@@ -151,6 +151,7 @@ list.printList();
 
 
 /**
+ * Pattern: Stash and loop
  * 
  * @param {*} node Start point to delete duplicates from
  */
@@ -188,6 +189,8 @@ function deleteDuplicateDataNodes(node) {
 }
 
 /**
+ * Pattern: Brute-force - index the list
+ * 
  * Problem: Implement an algorithm to find the kth to last element of a singly linked list
  * Input: Head of a singly-linked list and the position before last you want to find. k==0 means the last node.
  * Output: The kth node before the last
@@ -215,6 +218,7 @@ function returnKthToLast(node, k) {
 }
 
 /**
+ * Pattern: Backwards from End
  * 
  * Approach without returning: Print each value (k), so you can see what each is
  * 
@@ -242,6 +246,7 @@ function printKthToLastRecursive(node, k) {
 }
 
 /**
+ * Pattern: Leading/Trailing Pointers
  * 
  * Space two pointers k distance apart, and return the slower pointer when the faster
  * pointer goes out of bounds
@@ -268,10 +273,10 @@ function returnKthToLastIterative(node, k) {
 }
 
 /**
+ * Pattern: Swap
+ * 
  * Implement an algorithm to delete a node in the middle of a singly linked list, given
  * only access to that node.
- * 
- * Solution Pattern: Swap
  * 
  * Any edge cases? Last node?
  */
