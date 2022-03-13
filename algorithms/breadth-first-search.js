@@ -27,7 +27,7 @@ map.set("Timothy", ["Ben", "Alice"]);
  * Nodes directly connected to the start node are the first layer.
  * Nodes connected to a node which are directly connected to the start node are the second layer, and so on.
  * 
- * Pattern/Essence: Add each layer of graph to a queue and iterate through the queue.
+ * Pattern/Essence: Add each layer of graph to a queue and iterate through. Don't search same node's nodes twice.
  */
 function breadth_first_search(map, start, searchItem) {
     // 1. Queue of nodes
