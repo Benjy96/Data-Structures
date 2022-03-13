@@ -76,13 +76,14 @@ function shortestPath(map, startPerson, shortestPathTo) {
 
     var searched = new Set();
 
-    // TODO: How to track shortest distance? Bob & Alice here, but will loop between those two
-    // Subtract length?
     var count = 1;
 
     // 2. For each (first) node in queue:
     while(queue.length > 0) {
+        // Increment count and then remove queue's length to counteract the new people being
+        // added with each loop, even though we may be on the same "level"
         count = (count + 1) - queue.length;
+
         var person = queue.shift();
 
         // Ensure not already searched this person's nodes
@@ -115,3 +116,6 @@ console.log(findPersonInNetwork(map, "Ben", personToFind));
 
 personToFind = "Omega";
 console.log(shortestPath(map, "Ben", personToFind));    // Prints 2, as you go from Ben->Alice->Omega
+personToFind = "Timothy";
+console.log(shortestPath(map, "Ben", personToFind));    // Prints 3, as you go from Ben->Alice->Omega->Timothy
+
