@@ -69,7 +69,49 @@ function findPersonInNetwork(map, startPerson, searchFor) {
     return "Couldn't find " + searchFor;
 }
 
+function shortestPath(map, startPerson, shortestPathTo) {
+    // 1. Queue of nodes
+    var queue = map.get(startPerson).slice(); //.slice copies array rather than giving the reference
+    //If we get ref, we will modify the map when using queue.shift, etc
+
+    var searched = new Set();
+
+    // TODO: How to track shortest distance? Bob & Alice here, but will loop between those two
+    // Subtract length?
+    var count = 1;
+
+    // 2. For each (first) node in queue:
+    while(queue.length > 0) {
+        count = (count + 1) - queue.length;
+        var person = queue.shift();
+
+        // Ensure not already searched this person's nodes
+        if(searched.has(person) == false) {
+            searched.add(person);
+
+            // 2.1 If first node is what we're looking for, done
+            if(person == shortestPathTo) return count;
+
+            count++;
+
+            // 2.2. Else add all of this node's neighbours to the queue
+            var nodeFriends = map.get(person);
+            if(nodeFriends != null) {
+                for(var i = 0; i < nodeFriends.length; i++) {
+                    queue.push(nodeFriends[i]);
+                }
+            }
+        }
+    }
+
+    // 3. Couldn't find
+    return "Couldn't find " + searchFor;
+}
+
 var personToFind = "Jake";
-console.log(breadth_first_search(map, "Ben", personToFind));
+console.log(findPersonInNetwork(map, "Ben", personToFind));
 personToFind = "Timothy";
-console.log(breadth_first_search(map, "Ben", personToFind));
+console.log(findPersonInNetwork(map, "Ben", personToFind));
+
+personToFind = "Omega";
+console.log(shortestPath(map, "Ben", personToFind));    // Prints 2, as you go from Ben->Alice->Omega
