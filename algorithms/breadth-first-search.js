@@ -34,19 +34,19 @@ function breadth_first_search(map, start, searchItem) {
     var queue = map.get(start).slice(); //.slice copies array rather than giving the reference
                                         //If we get ref, we will modify the map when using queue.shift, etc
 
-    var searched = new Map();
+    var searched = new Set();
 
     // 2. For each (first) node in queue:
     while(queue.length > 0) {
         var item = queue.shift();
         
         // Ensure not already searched this person's nodes
-        if(searched.get(item) == undefined) {
-            searched.set(item);
-        } else {
+        if(searched.has(item) == false) {
+            searched.add(item);
+
             // 2.1 If first node is what we're looking for, done
             if(item == searchItem) return item + " is in the graph/network";
-
+            
             // 2.2. Else add all of this node's neighbours to the queue
             var nodeFriends = map.get(item);
             if(nodeFriends != null) {
@@ -64,4 +64,4 @@ function breadth_first_search(map, start, searchItem) {
 var personToFind = "Jake";
 console.log(breadth_first_search(map, "Ben", personToFind));
 personToFind = "Timothy";
-console.log(breadth_first_search(map, "Ben", personToFind));
+// console.log(breadth_first_search(map, "Ben", personToFind));
