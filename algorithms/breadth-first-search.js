@@ -19,6 +19,8 @@ var map = new Map();
 map.set("Ben", ["Bob", "Alice"]);
 map.set("Alice", ["Jane", "Omega"]);
 map.set("Omega", ["Rachel", "Timothy"]);
+map.set("Timothy", ["Ben", "Alice"]);
+
 
 /**
  * Searches for a node in a graph, a layer at a time.
@@ -32,18 +34,25 @@ function breadth_first_search(map, start, searchItem) {
     var queue = map.get(start).slice(); //.slice copies array rather than giving the reference
                                         //If we get ref, we will modify the map when using queue.shift, etc
 
+    var searched = new Map();
+
     // 2. For each (first) node in queue:
     while(queue.length > 0) {
-        var item = queue.shift();   // This is modifying the map
+        var item = queue.shift();
+        
+        // Ensure not already searched this person's nodes
+        if(searched.get(item) == undefined) {
+            searched.set(item);
+        } else {
+            // 2.1 If first node is what we're looking for, done
+            if(item == searchItem) return item + " is in the graph/network";
 
-        // 2.1 If first node is what we're looking for, done
-        if(item == searchItem) return item + " is in the graph/network";
-
-        // 2.2. Else add all of this node's neighbours to the queue
-        var nodeFriends = map.get(item);
-        if(nodeFriends != null) {
-            for(var i = 0; i < nodeFriends.length; i++) {
-                queue.push(nodeFriends[i]);
+            // 2.2. Else add all of this node's neighbours to the queue
+            var nodeFriends = map.get(item);
+            if(nodeFriends != null) {
+                for(var i = 0; i < nodeFriends.length; i++) {
+                    queue.push(nodeFriends[i]);
+                }
             }
         }
     }
