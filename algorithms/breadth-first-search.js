@@ -12,6 +12,12 @@
     * 2.1. If node meets condition, done
     * 2.2. Else add all node's neighbours to queue
  * 3. If empty, no nodes in network meeting condition
+ * ----------------
+ * Time Complexity:
+ * O(V + E)
+ * Where:
+ * E = number of Edges (i.e., connections from one person to another) (because you must follow each link)
+ * V = number of Vertices (i.e., people in graph) (because adding person to queue takes O(1) per person)
  */
 
 var map = new Map();
