@@ -24,7 +24,7 @@
  */
 
 var map = new Map();
-map.set("Ben", ["Bob", "Alice"]);
+map.set("Ben", ["Alice", "Bob"]);
 map.set("Alice", ["Jane", "Omega"]);
 map.set("Omega", ["Rachel", "Timothy"]);
 map.set("Timothy", ["Ben", "Alice"]);
@@ -76,14 +76,15 @@ function shortestPath(map, startPerson, shortestPathTo) {
 
     var searched = new Set();
 
+    // TODO: Track distance to node layer
+    // How to track layers when we loop and perhaps count through 5 of same layer?
+    // Perhaps track the initial length of layer, then once we have gone through 5, we increment
+    // our count, and so on through each length of each layer?
     var count = 1;
+    var layerLength = queue.length;
 
     // 2. For each (first) node in queue:
     while(queue.length > 0) {
-        // Increment count and then remove queue's length to counteract the new people being
-        // added with each loop, even though we may be on the same "level"
-        count = (count + 1) - queue.length;
-
         var person = queue.shift();
 
         // Ensure not already searched this person's nodes
@@ -92,8 +93,6 @@ function shortestPath(map, startPerson, shortestPathTo) {
 
             // 2.1 If first node is what we're looking for, done
             if(person == shortestPathTo) return count;
-
-            count++;
 
             // 2.2. Else add all of this node's neighbours to the queue
             var nodeFriends = map.get(person);
