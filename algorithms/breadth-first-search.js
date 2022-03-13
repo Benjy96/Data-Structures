@@ -20,6 +20,13 @@ map.set("Ben", ["Bob", "Alice"]);
 map.set("Alice", ["Jane", "Omega"]);
 map.set("Omega", ["Rachel", "Timothy"]);
 
+/**
+ * Searches for a node in a graph, a layer at a time.
+ * Nodes directly connected to the start node are the first layer.
+ * Nodes connected to a node which are directly connected to the start node are the second layer, and so on.
+ * 
+ * Pattern/Essence: Add each layer of graph to a queue and iterate through the queue.
+ */
 function breadth_first_search(map, start, searchItem) {
     // 1. Queue of nodes
     var queue = map.get(start).slice(); //.slice copies array rather than giving the reference
@@ -40,7 +47,7 @@ function breadth_first_search(map, start, searchItem) {
             }
         }
     }
-    
+
     // 3. Couldn't find
     return "Couldn't find " + searchItem;
 }
