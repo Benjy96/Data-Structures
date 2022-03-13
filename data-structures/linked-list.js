@@ -11,8 +11,12 @@
  * No overflow unless memory actually full
  * Moving pointers faster than moving items
  * 
- * 
  * Arrays prob better for access, linked list faster for randomly adding things to some position.
+ * ------------
+ * Time Complexity:
+ * Read: O(n) - sequential access, x.next, x2.next, ....
+ * Write: O(1) - just add to end of array, last.next
+ * Delete: O(1) - only O(1) if you are deleting first/last element
  */
 
 /**
