@@ -1,15 +1,14 @@
 /**
- * Method to find shortest distance between two things. Applicable Problems:
- * Shortest Path & Existence in network:
+ * Method to find shortest distance between two things/if something exists.
+ * Example problems for Finding the Shortest Path & Existence in network:
  * - Fewest edits from misspelling to real word
  * - Doctor closest to you in your network
  * - Fewest moves to victory in chess
  * - Is there a GPU seller your network?
- * 
  * ----------------
  * Implementation:
  * 1. Queue of nodes
- * 2. For each first node in queue:
+ * 2. For each first node in queue not already checked:
     * 2.1. If node meets condition, done
     * 2.2. Else add all node's neighbours to queue
  * 3. If empty, no nodes in network meeting condition
