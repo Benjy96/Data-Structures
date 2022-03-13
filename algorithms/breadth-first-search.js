@@ -1,5 +1,8 @@
 /**
- * Method to find shortest distance between two things/if something exists.
+ * Two uses:
+ * 1. Find shortest distance between two things
+ * 2. Find if something exists
+
  * Example problems for Finding the Shortest Path & Existence in network:
  * - Fewest edits from misspelling to real word
  * - Doctor closest to you in your network
@@ -34,26 +37,26 @@ map.set("Timothy", ["Ben", "Alice"]);
  * 
  * Pattern/Essence: Add each layer of graph to a queue and iterate through. Don't search same node's nodes twice.
  */
-function breadth_first_search(map, start, searchItem) {
+function findPersonInNetwork(map, startPerson, searchFor) {
     // 1. Queue of nodes
-    var queue = map.get(start).slice(); //.slice copies array rather than giving the reference
+    var queue = map.get(startPerson).slice(); //.slice copies array rather than giving the reference
                                         //If we get ref, we will modify the map when using queue.shift, etc
 
     var searched = new Set();
 
     // 2. For each (first) node in queue:
     while(queue.length > 0) {
-        var item = queue.shift();
+        var person = queue.shift();
         
         // Ensure not already searched this person's nodes
-        if(searched.has(item) == false) {
-            searched.add(item);
+        if(searched.has(person) == false) {
+            searched.add(person);
 
             // 2.1 If first node is what we're looking for, done
-            if(item == searchItem) return item + " is in the graph/network";
+            if(person == searchFor) return person + " is in the graph/network";
             
             // 2.2. Else add all of this node's neighbours to the queue
-            var nodeFriends = map.get(item);
+            var nodeFriends = map.get(person);
             if(nodeFriends != null) {
                 for(var i = 0; i < nodeFriends.length; i++) {
                     queue.push(nodeFriends[i]);
@@ -63,7 +66,7 @@ function breadth_first_search(map, start, searchItem) {
     }
 
     // 3. Couldn't find
-    return "Couldn't find " + searchItem;
+    return "Couldn't find " + searchFor;
 }
 
 var personToFind = "Jake";
