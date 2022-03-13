@@ -64,4 +64,4 @@ function breadth_first_search(map, start, searchItem) {
 var personToFind = "Jake";
 console.log(breadth_first_search(map, "Ben", personToFind));
 personToFind = "Timothy";
-// console.log(breadth_first_search(map, "Ben", personToFind));
+console.log(breadth_first_search(map, "Ben", personToFind));
