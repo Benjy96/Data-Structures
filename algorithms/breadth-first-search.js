@@ -1,6 +1,6 @@
 /**
- * Checks each node in each layer of a graph.
- * 
+ * Checks each node in each layer of a graph. For finding a node or distance to node.
+ * ---------
  * Two uses:
  * 1. Find shortest distance between two things
  * 2. Find if something exists

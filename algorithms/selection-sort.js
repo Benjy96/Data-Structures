@@ -1,4 +1,6 @@
 /**
+ * Lets you sort an unordered list.
+ * ---------------
  * Runtime: O(n^2).
  * 
  * Iterates through a list to find the largest/smallest element in a list, places it in a new list, and repeats.

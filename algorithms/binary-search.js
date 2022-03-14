@@ -1,5 +1,6 @@
 /**
- 
+Lets you search a sorted list in O(log n) time.
+------
 To run this test, type "node binary-search.js" into your console in this directory.
 
 Problem: Given a sorted array of distinct integers and a target value, 

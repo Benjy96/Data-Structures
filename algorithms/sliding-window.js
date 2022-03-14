@@ -1,7 +1,6 @@
 /**
- * 
- * Sliding Window
- * 
+ * Lets you find substrings.
+ * --------
  * Problem: Get longest substring with unique characters only.
  * 
  * What do we need to do at the most basic level?

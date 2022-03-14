@@ -1,5 +1,6 @@
 /**
- * 
+ * Lets you calculate problems with multiple steps/stages.
+ * --------
  * Problem: Compute the nth fibonacci number.
  * 
  * What is fibonacci sequence? Each number is sum of prior two numbers.

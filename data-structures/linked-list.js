@@ -1,4 +1,6 @@
 /**
+ * Lets you store data in a linear order. Slow reads, but fast write/delete of first/last elements.
+ * ------------
  * Doubly-Linked List vs array
  * 
  * Bad: 

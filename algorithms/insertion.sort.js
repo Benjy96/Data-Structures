@@ -1,7 +1,10 @@
 /**
+ * Lets you sort an unordered list.
+ * ----------
+ * Runtime: O(n^2) - nested loops are n^2
+ * 
  * At each index of items, swaps current element with last element if last element smaller, and so on, until start of array.
  * Does this items.length (or indexToSortTo) number of times.
- * O(n^2) - nested loops are n^2
  */
 function insertionSort(items, indexToSortTo) {
     if(items.length < 2) return;
