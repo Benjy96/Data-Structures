@@ -1,5 +1,6 @@
 /**
- * Lets you sort an unordered list.
+ * Lets you sort an unordered list. For each element, goes back and swaps each element of list. 
+ * Easier to remember as a "Swap" sort.
  * ----------
  * Runtime: O(n^2) - nested loops are n^2
  * 

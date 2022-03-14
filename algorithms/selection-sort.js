@@ -1,5 +1,5 @@
 /**
- * Lets you sort an unordered list.
+ * Lets you sort an unordered list. Iterates over list. Stores biggest in new list. Removes from list. Repeat.
  * ---------------
  * Runtime: O(n^2).
  * 
