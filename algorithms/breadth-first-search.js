@@ -69,6 +69,10 @@ function findPersonInNetwork(map, startPerson, searchFor) {
     return "Couldn't find " + searchFor;
 }
 
+/**
+ * Pattern/Essence: Add each layer of graph to a queue and iterate through. Don't search same nodes twice. Track length
+ *                  of each layer and update layer count once gone through length for getting shortest path.
+ */
 function shortestPath(map, startPerson, shortestPathTo) {
     // 1. Queue of nodes
     var queue = map.get(startPerson).slice(); //.slice copies array rather than giving the reference
