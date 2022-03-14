@@ -64,7 +64,7 @@ function inOrderTraversal(node) {
  */
 function preOrderTraversal(node) {
     if(node != null) {
-        printNode(node);
+        printNode(node);    // prints node before continuing down left, and then down right
         preOrderTraversal(node.left);
         preOrderTraversal(node.right);
     }
