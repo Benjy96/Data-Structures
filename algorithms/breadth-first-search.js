@@ -19,8 +19,8 @@
  * Time Complexity:
  * O(V + E)
  * Where:
- * E = number of Edges (i.e., connections from one person to another) (because you must follow each link)
- * V = number of Vertices (i.e., people in graph) (because adding person to queue takes O(1) per person)
+ * E = number of Edges (i.e., connections from one person to another) (because it takes O(1) to get each person's network)
+ * V = number of Vertices (i.e., people in graph) (because adding each person in a network to queue takes O(1) per person)
  */
 
 var map = new Map();
