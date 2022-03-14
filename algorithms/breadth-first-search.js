@@ -76,12 +76,12 @@ function shortestPath(map, startPerson, shortestPathTo) {
 
     var searched = new Set();
 
-    // TODO: Track distance to node layer
     // How to track layers when we loop and perhaps count through 5 of same layer?
-    // Perhaps track the initial length of layer, then once we have gone through 5, we increment
-    // our count, and so on through each length of each layer?
-    var count = 1;
+    // Track the initial length of layer. Once we have gone through 5 items, then increment
+    // the layer we are on, and do the same again, tracking the length of the next layer
+    var layerCount = 1;
     var layerLength = queue.length;
+    var layerPos = 0;
 
     // 2. For each (first) node in queue:
     while(queue.length > 0) {
@@ -92,7 +92,7 @@ function shortestPath(map, startPerson, shortestPathTo) {
             searched.add(person);
 
             // 2.1 If first node is what we're looking for, done
-            if(person == shortestPathTo) return count;
+            if(person == shortestPathTo) return shortestPathTo + " is " + layerCount + " steps away";
 
             // 2.2. Else add all of this node's neighbours to the queue
             var nodeFriends = map.get(person);
@@ -101,6 +101,15 @@ function shortestPath(map, startPerson, shortestPathTo) {
                     queue.push(nodeFriends[i]);
                 }
             }
+
+            // Increment count each time we go through a layer
+            if(layerPos == layerLength) {
+                layerCount++;
+                layerPos = 0;
+                layerLength = queue.length;
+            }
+
+            layerPos++;
         }
     }
 
@@ -113,8 +122,7 @@ console.log(findPersonInNetwork(map, "Ben", personToFind));
 personToFind = "Timothy";
 console.log(findPersonInNetwork(map, "Ben", personToFind));
 
-personToFind = "Omega";
-console.log(shortestPath(map, "Ben", personToFind));    // Prints 2, as you go from Ben->Alice->Omega
-personToFind = "Timothy";
-console.log(shortestPath(map, "Ben", personToFind));    // Prints 3, as you go from Ben->Alice->Omega->Timothy
+console.log(shortestPath(map, "Ben", "Alice"));    // Prints 1, as you go from Ben->Alice
+console.log(shortestPath(map, "Ben", "Omega"));    // Prints 2, as you go from Ben->Alice->Omega
+console.log(shortestPath(map, "Ben", "Timothy"));    // Prints 3, as you go from Ben->Alice->Omega->Timothy
 
