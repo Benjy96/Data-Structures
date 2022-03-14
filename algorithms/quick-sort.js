@@ -1,5 +1,7 @@
 const {performance} = require('perf_hooks');
 /**
+ * Lets you sort an array. Uses a halving method for O(log n) speed.
+ * ----------
  * Divide & Conquer Problem-solving Method:
  * 1. Base case
  * 2. Divide until base case
