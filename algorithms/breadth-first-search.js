@@ -68,8 +68,13 @@ function findPersonInNetwork(map, startPerson, searchFor) {
 }
 
 /**
- * Pattern/Essence: Add each layer of graph to a queue and iterate through. Don't search same nodes twice. Track length
+ * Pattern/Essence: Search each node in a layer. Add each node in layer's NEXT layer to the END of a queue. Repeat.
+ * 
+ * Add each layer of graph to a queue and iterate through. Don't search same nodes twice. Track length
  *                  of each layer and update layer count once gone through length for getting shortest path.
+ * 
+ * The reason this finds SHORTEST path is because we add to a queue - and if a path were longer, their nodes would
+ * keep being added to the end of the queue to be checked far later.
  */
 function shortestPath(map, startPerson, shortestPathTo) {
     // 1. Queue of nodes

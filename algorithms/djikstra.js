@@ -10,7 +10,6 @@
  */
 
 var map = new Map();
-var searched = new Set();
 
 map.set("a", [{ name: "b", cost: 5 }, { name: "c", cost: 2 }]);
 map.set("b", [{ name: "d", cost: 3 }]);
@@ -32,6 +31,10 @@ function getLowestCostNode(map, node) {
         }
     }
     return lowestCostNode;
+}
+
+function getLowestCostPath(map, startNode) {
+
 }
 
 console.log(getLowestCostNode(map, "a"));
