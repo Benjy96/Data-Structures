@@ -25,14 +25,10 @@ function getLowestCostNode(map, node) {
 
     while(queue.length > 0) {
         var nextNode = queue.shift();
-        
-        if(searched.has(nextNode.name) == false) {
-            searched.add(nextNode.name);
 
-            if(nextNode.cost < lowestCost) {
-                lowestCost = nextNode.cost;
-                lowestCostNode = nextNode;
-            }
+        if(nextNode.cost < lowestCost) {
+            lowestCost = nextNode.cost;
+            lowestCostNode = nextNode;
         }
     }
     return lowestCostNode;
