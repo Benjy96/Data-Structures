@@ -1,5 +1,7 @@
 /**
  * Checks each node in each layer of a graph. For finding a node or distance to node.
+ * 
+ * Finds path with fewest number of connections.
  * ---------
  * Two uses:
  * 1. Find shortest distance between two things
@@ -24,12 +26,6 @@
  * E = number of Edges (i.e., connections from one person to another) (because it takes O(1) to get each person's network)
  * V = number of Vertices (i.e., people in graph) (because adding each person in a network to queue takes O(1) per person)
  */
-
-var map = new Map();
-map.set("Ben", ["Alice", "Bob"]);
-map.set("Alice", ["Jane", "Omega"]);
-map.set("Omega", ["Rachel", "Timothy"]);
-map.set("Timothy", ["Ben", "Alice"]);
 
 
 /**
@@ -123,10 +119,18 @@ function shortestPath(map, startPerson, shortestPathTo) {
     return "Couldn't find " + searchFor;
 }
 
+var map = new Map();
+map.set("Ben", ["Alice", "Bob"]);
+map.set("Alice", ["Jane", "Omega"]);
+map.set("Omega", ["Rachel", "Timothy"]);
+map.set("Timothy", ["Ben", "Alice"]);
+
 var personToFind = "Jake";
 console.log(findPersonInNetwork(map, "Ben", personToFind));
 personToFind = "Timothy";
 console.log(findPersonInNetwork(map, "Ben", personToFind));
+
+console.log("");
 
 console.log(shortestPath(map, "Ben", "Alice"));    // Prints 1, as you go from Ben->Alice
 console.log(shortestPath(map, "Ben", "Omega"));    // Prints 2, as you go from Ben->Alice->Omega
