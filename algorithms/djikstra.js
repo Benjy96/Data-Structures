@@ -1,52 +1,114 @@
 /**
- * Finds fastest path based on a graph with WEIGHTS; Find shortest path with smallest total weight/cost. (BFS finds shortest path with fewest connections/segments.)
+ * Finds fastest path based on a graph with WEIGHTS; Find path with smallest total cost. (BFS finds shortest path with fewest connections/segments.)
  * 
  * 1. Find cheapest node.
  * 2. Update total cost to get to neighbours (cost to current + to neighbour)
  * 3. Repeat until done for every node.
  * 4. Follow parents back to origin for final path.
  * 
+ * BFS finds shortest distance.
+ * DKA finds lowest cost.
+ * 
  */
 
+// INCORRECT DATA STRUCTURE
 var map = new Map();
 
-/*
+map.set("a", [{ name: "b", cost: 1, parent: "a" }, { name: "c", cost: 5, parent: "a" }]);
+map.set("b", [{ name: "d", cost: 4, parent: "b" }, { name: "c", cost: 1, parent: "b" }]);
+map.set("c", [{ name: "d", cost: 10000, parent: "c" }]);
+map.set("d", { cost: Infinity, parent: null });
 
-       /a\
+/*
+    START
+      1/a\5
     b  ->   c
        \d/       
 
 a to b is 1, a to c is 5
 b to c is 1, b to d is 4
 c to d is 1
-Shortest path would be a->b->c->d (3)
+Shortest path would be a->b->d (5)
 */
-map.set("a", [{ name: "b", cost: 1, parent: "a" }, { name: "c", cost: 5, parent: "a" }]);
-map.set("b", [{ name: "d", cost: 4, parent: "b" }, { name: "c", cost: 1, parent: "b" }]);
-map.set("c", [{ name: "d", cost: 1, parent: "c" }]);
 
-console.log(map);
+var graph = {};
+graph["start"] = {};
+graph["start"]["a"] = 1;
+graph["start"]["b"] = 1;
 
+graph["a"] = {};
+graph["a"]["b"] = 1;
+graph["a"]["c"] = 5;
 
-function getLowestCostNode(map, node) {
-    var queue = map.get(node).slice();
+graph["b"] = {};
+graph["b"]["c"] = 1;
+graph["b"]["d"] = 5;
 
+graph["c"] = {};
+graph["c"]["d"] = 10,000;
+
+graph["d"] = {};
+
+// Cost is how long to get there from start. Infinity if unknown
+var costs = {};
+costs["a"] = 1;
+costs["b"] = 1;
+costs["c"] = Infinity;
+costs["d"] = Infinity;
+
+// Parents will store the cheapest prior node to this node
+var parents = {};
+parents["a"] = "start";
+parents["b"] = "start";
+parents["c"] = null;
+parents["d"] = null;
+
+processed = new Set();
+
+var cheapestNode = getLowestCostNode3(costs);
+while(cheapestNode != null) {
+    var cost = costs[cheapestNode];
+    var neighbours = graph[cheapestNode];
+
+    for(var n in neighbours) {
+        var newCost = cost + neighbours[n];
+
+        if(costs[n] > newCost) {
+            costs[n] = newCost;
+            parents[n] = cheapestNode;
+        }
+    }
+    processed.add(cheapestNode);
+    cheapestNode = getLowestCostNode3(costs);
+}
+
+function getLowestCostNode3(costs) {
     var lowestCost = Infinity;
     var lowestCostNode = null;
 
-    while(queue.length > 0) {
-        var nextNode = queue.shift();
-
-        if(nextNode.cost < lowestCost) {
-            lowestCost = nextNode.cost;
-            lowestCostNode = nextNode;
+    for(var node in costs) {
+        var nodeCost = costs[node];
+        if(nodeCost < lowestCost && processed.has(node) == false) {
+            lowestCost = nodeCost;
+            lowestCostNode = node;
         }
     }
     return lowestCostNode;
 }
 
-function getLowestCostPath(map, startNode) {
+// PRINT THE RESULT
+var backwardsRoute = ["d"];
+var nextNode = parents["d"];
 
+while(nextNode != null) {
+    backwardsRoute.push(nextNode);
+    nextNode = parents[nextNode];
 }
 
-console.log(getLowestCostNode(map, "a"));
+console.log(backwardsRoute.reverse());
+
+
+
+
+
+
