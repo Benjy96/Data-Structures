@@ -19,6 +19,7 @@ var map = new Map();
 a to b is 1, a to c is 5
 b to c is 1, b to d is 4
 c to d is 1
+Shortest path would be a->b->c->d (3)
 */
 map.set("a", [{ name: "b", cost: 1, parent: "a" }, { name: "c", cost: 5, parent: "a" }]);
 map.set("b", [{ name: "d", cost: 4, parent: "b" }, { name: "c", cost: 1, parent: "b" }]);
