@@ -9,6 +9,11 @@
  * BFS finds shortest distance.
  * DKA finds lowest cost.
  * 
+ * You need a few things:
+ * - Graph containing routes. (graph)
+ * - Place to store the latest, cheapest costs of a path. (costs)
+ * - The route. (parents)
+ * 
  */
 
 // INCORRECT DATA STRUCTURE
@@ -20,15 +25,18 @@ map.set("c", [{ name: "d", cost: 10000, parent: "c" }]);
 map.set("d", { cost: Infinity, parent: null });
 
 /*
-    START
-      1/a\5
-    b  ->   c
-       \d/       
 
-a to b is 1, a to c is 5
-b to c is 1, b to d is 4
-c to d is 1
-Shortest path would be a->b->d (5)
+START -> a
+START -> b
+
+a -> b
+a -> c
+
+b -> c
+b -> d
+
+c -> d
+
 */
 
 var graph = {};
@@ -106,9 +114,4 @@ while(nextNode != null) {
 }
 
 console.log(backwardsRoute.reverse());
-
-
-
-
-
 
