@@ -1,11 +1,12 @@
 /**
  * Finds fastest path based on a graph with WEIGHTS; Find path with smallest total cost. (BFS finds shortest path with fewest connections/segments.)
  * 
- * 1. Find cheapest node.
- * 2. Update total cost to get to neighbours (cost to current + to neighbour)
- * 3. Store cheapest path
- * 4. Repeat until done for every node.
- * 5. Follow parents back to origin for final path.
+ * 1. Get cheapest node
+ * 2. Get cheapest node's neighbours
+ * 3. For each of cheapest node's neighbours, update cost of / parent to get there if current path + cost is cheaper 
+ *    than existing cost
+ * 4. Repeat until last node
+ * 5. Follow parents back to origin for fastest route 
  * 
  * BFS finds shortest distance.
  * DKA finds lowest cost.
@@ -76,17 +77,28 @@ parents["d"] = null;
 
 processed = new Set();
 
+/**
+ * 
+ * 1. Get cheapest node
+ * 2. Get cheapest node's neighbours
+ * 3. For each of cheapest node's neighbours, update cost of / parent to get there if current path + cost is cheaper 
+ *    than existing cost
+ * 4. Repeat until last node
+ * 5. Follow parents back to origin for fastest route 
+ * 
+ */
+
 var cheapestNode = getLowestCostNode3(costs);
 while(cheapestNode != null) {
-    var cost = costs[cheapestNode];
-    var neighbours = graph[cheapestNode];
+    var cheapestNodeCost = costs[cheapestNode];
+    var cheapestNodesNeighbours = graph[cheapestNode];
 
-    for(var n in neighbours) {
-        var newCost = cost + neighbours[n];
+    for(var neighbour in cheapestNodesNeighbours) {
+        var newCost = cheapestNodeCost + cheapestNodesNeighbours[neighbour];
 
-        if(costs[n] > newCost) {
-            costs[n] = newCost;
-            parents[n] = cheapestNode;
+        if(costs[neighbour] > newCost) {
+            costs[neighbour] = newCost;
+            parents[neighbour] = cheapestNode;
         }
     }
     processed.add(cheapestNode);
