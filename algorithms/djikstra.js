@@ -3,8 +3,9 @@
  * 
  * 1. Find cheapest node.
  * 2. Update total cost to get to neighbours (cost to current + to neighbour)
- * 3. Repeat until done for every node.
- * 4. Follow parents back to origin for final path.
+ * 3. Store cheapest path
+ * 4. Repeat until done for every node.
+ * 5. Follow parents back to origin for final path.
  * 
  * BFS finds shortest distance.
  * DKA finds lowest cost.
