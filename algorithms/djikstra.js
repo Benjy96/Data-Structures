@@ -16,9 +16,11 @@
  * 
  */
 
-// INCORRECT DATA STRUCTURE
+// INCORRECT DATA STRUCTURE - was initial idea
 var map = new Map();
-
+// This DS does not work as you cannot access the costs at any time - c could be in
+// multiple places. E.g., in a and b, in any index of those arrays.
+// Whereas a centralised hash map, you can access and update c at any time.
 map.set("a", [{ name: "b", cost: 1, parent: "a" }, { name: "c", cost: 5, parent: "a" }]);
 map.set("b", [{ name: "d", cost: 4, parent: "b" }, { name: "c", cost: 1, parent: "b" }]);
 map.set("c", [{ name: "d", cost: 10000, parent: "c" }]);
