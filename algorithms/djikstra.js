@@ -16,6 +16,9 @@
  * - Place to store the latest, cheapest costs of a path. (costs)
  * - The route. (parents)
  * 
+ * * TODO: Below correct?
+ * ** APESPLANATION: WE GO SO FAR ALONG ONE ROUTE AND STOP GOING THAT WAY ONCE THE COST BECOMES GREATER THAN SOME OTHER CLOSER NODE. **
+ * 
  */
 
 // INCORRECT DATA STRUCTURE - was initial idea
@@ -81,11 +84,24 @@ processed = new Set();
  * 
  * 1. Get cheapest node
  * 2. Get cheapest node's neighbours
- * 3. For each of cheapest node's neighbours, update cost of / parent to get there if current path + cost is cheaper 
+ * 3. For each of cheapest node's neighbours, update [cost of] & [parent to get there] if current path + cost is cheaper 
  *    than existing cost
  * 4. Repeat until last node
  * 5. Follow parents back to origin for fastest route 
  * 
+ * 
+ * What don't I understand?
+ * - Why do we not check a node twice? What if we come to it through a cheaper route?
+ *      We still calculate cost TO the node if it is a neighbour more than once, we just don't calculate it as the lowest cost node twice.
+ * 
+ *      
+ *      
+ *      - What are we doing when we "process" a node?
+ *          Getting its neighbours. Updating costs TO those neighbour nodes FROM current (cheapest) node.
+ * 
+ * 
+ * - Are we checking EVERY path?
+ * - Can there be a shorter path through an already visited node that we can't visit again because it has already been searched?
  */
 
 var cheapestNode = getLowestCostNode3(costs);
