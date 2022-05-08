@@ -2,18 +2,26 @@
  * Finds fastest path based on a graph with WEIGHTS; Find shortest path with smallest total weight/cost. (BFS finds shortest path with fewest connections/segments.)
  * 
  * 1. Find cheapest node.
- * 2. Update cost of cheapest node's neighbours.
+ * 2. Update total cost to get to neighbours (cost to current + to neighbour)
  * 3. Repeat until done for every node.
- * 4. Calculate final path.
+ * 4. Follow parents back to origin for final path.
  * 
- * Basically, look at every route and update if a shorter path to get to end.
  */
 
 var map = new Map();
 
-map.set("a", [{ name: "b", cost: 5 }, { name: "c", cost: 2 }]);
-map.set("b", [{ name: "d", cost: 3 }]);
-map.set("c", [{ name: "d", cost: 3 }]);
+/*
+
+       /a\
+    b  ->   c
+       \d/       
+
+*/
+map.set("a", [{ name: "b", cost: 1, parent: "a" }, { name: "c", cost: 5, parent: "a" }]);
+map.set("b", [{ name: "d", cost: 4, parent: "b" }, { name: "c", cost: 1, parent: "b" }]);
+map.set("c", [{ name: "d", cost: 1, parent: "c" }]);
+
+console.log(map);
 
 
 function getLowestCostNode(map, node) {
