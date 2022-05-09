@@ -20,8 +20,10 @@
  * - The route. (parents)
  * - Processed nodes. (processed)
  * 
- * * TODO: Below correct?
  * ** APESPLANATION: WE GO SO FAR ALONG ONE ROUTE AND STOP GOING THAT WAY ONCE THE COST BECOMES GREATER THAN SOME OTHER CLOSER NODE. **
+ * 
+ * CAVEAT: Dijkstra doesn't work with NEGATIVE nodes. Why? Doesn't expect them - if you have 3 nodes, A, B, C, and initial path is 1 cheap 1 expensive,
+ * you will take initial path and never get the next. Except if u went to B, perhaps it would then have a negative score to C, but u would never find out.
  * 
  */
 
