@@ -1,12 +1,15 @@
 /**
  * Finds fastest path based on a graph with WEIGHTS; Find path with smallest total cost. (BFS finds shortest path with fewest connections/segments.)
  * 
- * 1. Get cheapest node
+ * Process: go along cheapest route until a cheaper route.
+ * 
+ * 1. Get cheapest node not already processed
  * 2. Get cheapest node's neighbours
  * 3. For each of cheapest node's neighbours, update cost of / parent to get there if current path + cost is cheaper 
  *    than existing cost
- * 4. Repeat until last node
- * 5. Follow parents back to origin for fastest route 
+ * 4. Store the current, cheapest node in the processed list
+ * 5. Repeat until last node
+ * 6. Follow parents back to origin for fastest route 
  * 
  * BFS finds shortest distance.
  * DKA finds lowest cost.
@@ -15,6 +18,7 @@
  * - Graph containing routes. (graph)
  * - Place to store the latest, cheapest costs of a path. (costs)
  * - The route. (parents)
+ * - Processed nodes. (processed)
  * 
  * * TODO: Below correct?
  * ** APESPLANATION: WE GO SO FAR ALONG ONE ROUTE AND STOP GOING THAT WAY ONCE THE COST BECOMES GREATER THAN SOME OTHER CLOSER NODE. **
