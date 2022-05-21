@@ -25,12 +25,14 @@ class Tree {
 /**
  * Tree Structure:
  *          8
+ *       /      \
  *      4       10
- *  2
+ *   /     \ 
+ *  2       5
  */
 var tree = new Tree(new Node("8", 
                         [new Node("4", 
-                            [new Node("2", null)]
+                            [new Node("2", null), new Node("5", null)]
                         ), 
                         new Node("10", null)]
                     ));
@@ -49,7 +51,7 @@ function printNode(node) {
 }
 
 /**
- * Visit left, current, right - will print AFTER reaching end of LEFT branch
+ * DFS In Order: Print last lefts first (first print is AFTER going down all lefts)
  */
 function inOrderTraversal(node) {
     if(node != null) {
@@ -60,7 +62,7 @@ function inOrderTraversal(node) {
 }
 
 /**
- * Visit current node BEFORE child nodes - will print BEFORE reaching end of branch
+ * DFS Pre Order: Print each left node first
  */
 function preOrderTraversal(node) {
     if(node != null) {
@@ -71,7 +73,7 @@ function preOrderTraversal(node) {
 }
 
 /**
- * Visit current node AFTER child nodes - will print AFTER reaching end of branch
+ * DFS Post Order: Print last left and then last right
  */
  function postOrderTraversal(node) {
     if(node != null) {
