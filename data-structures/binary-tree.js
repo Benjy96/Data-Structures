@@ -62,7 +62,7 @@ function inOrderTraversal(node) {
 }
 
 /**
- * DFS Pre Order: Print each left node first
+ * DFS Pre Order: Print each left node first, starting with root
  */
 function preOrderTraversal(node) {
     if(node != null) {
