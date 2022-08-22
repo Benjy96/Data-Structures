@@ -46,7 +46,7 @@ class Main {
     }
 
     public static void reassignObj(test obj) {
-        test newObject = new test("Mr Test Ickle, PhD", 28);
+        test newObject = new test("Mr Test Man, PhD", 26);
         obj = newObject;
     }
 }
