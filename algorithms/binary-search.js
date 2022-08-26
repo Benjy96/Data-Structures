@@ -1,10 +1,10 @@
 /**
 Lets you search a sorted list in O(log n) time.
+Why? Binary search halves the input with each iteration. A logarithm is the opposite of an exponent.
 ------
 To run this test, type "node binary-search.js" into your console in this directory.
 
-Problem: Given a sorted array of distinct integers and a target value, 
-return the index if the target is found. 
+Problem: Given a sorted array of distinct integers and a target value, return the index if the target is found. 
 If not, return the index where it would be if it were inserted in order.
 
 Input: nums = [1,3,5,6], target = 5
@@ -13,14 +13,13 @@ Expected Output: 2
 Input: nums = [1,3,5,6], target = 7
 Expected Output: 4
 
-*****
-Solution runtime: O(Log N)
-Why? Binary search halves the input with each iteration. A logarithm is the opposite of an exponent.
  */
 
 function test() {
-    var test1 = (SearchInsert([1,3,5,6], 5) == 2) ? "Pass" : "Fail";
-    var test2 = (SearchInsert([1,3,5,6], 7) == 4) ? "Pass" : "Fail";
+    // Check 5 is at index 2
+    var test1 = (SearchInFor([1,3,5,6], 5) == 2) ? "Pass" : "Fail";
+    // Check 7 is outside length of array
+    var test2 = (SearchInFor([1,3,5,6], 7) > [1,3,5,6].length - 1) ? "Pass" : "Fail";
 
     var nums = [1,2,3,5,6,7,8,9,14,21,57,73,101,151,200,201,202];
     var recursiveTest = (recursiveBinarySearch(nums, 7, 0, nums.length) == 5) ? "Pass" : "Fail";
@@ -30,7 +29,31 @@ function test() {
     console.log("Recursive test: " + recursiveTest);
 }
 
-function SearchInsert(nums, target) {
+/**
+ * Binary Search algorithm.
+ * Halves the sorted array from the midpoint until the target is found.
+ * 
+ * For example, if you are searching a huge dictionary for a word, you could go to the halfway point,
+ * see if your target word "Jurassic" beginning with J is before or after the middle letter, let's say L. If it's smaller (it is),
+ * then search the first half of the dictionary, throwing the first half away.
+ * 
+ * 1,2,3,4,5,6,7,8,9,10 -- Find 7
+ * Left 1, Right 10, Half 5
+ * Target bigger than half (5)
+ * Set Left 5, Right 10
+ * Target smaller than half 8
+ * Set Left 5, Right 7
+ * Target bigger than half 6
+ * Set Left 7, Right 7
+ * 
+ * If midpoint is target, return midpoint index
+ * Else if midpoint is bigger than target, slide left to midpoint + 1
+ * Else if midpoint is smaller than target, slide right to midpoint - 1
+ * @param {*} nums - ordered array of numbers
+ * @param {*} target - number to find in the ordered array
+ * @returns 
+ */
+function SearchInFor(nums, target) {
     var left = 0;
     var half = 0;
     var right = nums.length;
@@ -52,8 +75,8 @@ function SearchInsert(nums, target) {
         // If midpoint smaller than target, move pointer to the right (take right side of array)
         if(nums[half] < target) left = half+1;
     }
-    // base case return left, as left will be the pointer to end on final value as while loop
-    // terminates once left exceeds right
+    // base case return left, as left will be the pointer to end on final value because the while loop
+    // terminates once left > right
     return left;
 }
 
