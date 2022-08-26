@@ -2,6 +2,8 @@ const {performance} = require('perf_hooks');
 /**
  * Lets you sort an array. Uses a halving method: Splits array into halves until you get to two
  * elements, then swaps those two into correct order. Then joins all subarrays.
+ * 
+ * Runtime (Avg): O(n log(n))
  * ----------
  * Divide & Conquer Problem-solving Method:
  * 1. Base case
@@ -32,12 +34,17 @@ const {performance} = require('perf_hooks');
  * 
  */
 var numQSCalls = 0;
+/**
+ * Recursively sorts left and right half of an array. I.e., split into left and right, then split left into left/right and right into left/right.
+ * Base case is to swap an array of 2 elements into correct order.
+ * Recursive case is to join left and right.
+ */
 function quickSort(array) {
     numQSCalls++;
     // Base Case - nothing to sort
-    if(array.length < 2) return array;
+    if(array.length <= 1) return array;
 
-    // Base Case - Two elements
+    // Base Case - Two elements - Swap into correct order
     if(array.length == 2) {
         var temp = 0;
         if(array[0] > array[1]) {
@@ -48,17 +55,18 @@ function quickSort(array) {
         return array;
     }
 
-    var pivotIndex = Math.floor(array.length / 2);
-    var pivot = array[pivotIndex];
-    var left = []
+    var halfwayIndex = Math.floor(array.length / 2);
+    var halfwayValue = array[halfwayIndex];
+    var left = [];
     var right = [];
 
     // Store elements bigger than pivot in right, smaller in left
     for(var i = 0; i < array.length; i++) {
-        if(i == pivotIndex) continue;   // Skip next part of loop, don't need to compare pivot to pivot
+        if(i == halfwayIndex) continue;   // Skip next part of loop, don't need to compare pivot to pivot
 
-        if(array[i] > pivot) {
-            right[right.length] = array[i];
+        // Store elements bigger than midpoint in right, elements smaller in left
+        if(array[i] > halfwayValue) {
+            right[right.length] = array[i]; // right.length will increase in size when we store something
         }
         else {
             left[left.length] = array[i];
@@ -75,7 +83,7 @@ function quickSort(array) {
             // Left: [3,2]      BASE CASE LENGTH == 2, swaps and returns
             // Pivot: 9
             // Right: [12,22]   BASE CASE LENGTH == 2, returns
-    return quickSort(left).concat(pivot, quickSort(right));
+    return quickSort(left).concat(halfwayValue, quickSort(right));
 }
 
 var numRandomPivotCalls = 0;
