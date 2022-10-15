@@ -36,8 +36,8 @@ const {performance} = require('perf_hooks');
 var numQSCalls = 0;
 /**
  * Recursively sorts left and right half of an array. I.e., split into left and right, then split left into left/right and right into left/right.
- * Base case is to swap an array of 2 elements into correct order.
- * Recursive case is to join left and right.
+ * Base Case:       Put an array of 2 elements into correct order.
+ * Recursive Case:  Join quicksorted left and quicksorted right.
  */
 function quickSort(array) {
     numQSCalls++;
@@ -73,16 +73,10 @@ function quickSort(array) {
         }
     }
 
-    // console.log("Pivot " + pivot + ", left " + left + " , right " + right);
-
-    // Recursive Case: left + pivot + right
     // [] + 1 + [9,3,12,2,22]
-        // TOP-LEVEL LEFT: []
-        // TOP-LEVEL PIVOT: 1
-        // TOP-LEVEL RIGHT: [2,3] + 9 + [12,22]
-            // Left: [3,2]      BASE CASE LENGTH == 2, swaps and returns
-            // Pivot: 9
-            // Right: [12,22]   BASE CASE LENGTH == 2, returns
+    // TOP-LEVEL LEFT: []
+    // TOP-LEVEL PIVOT: 1
+    // TOP-LEVEL RIGHT: [2,3] + 9 + [12,22]
     return quickSort(left).concat(halfwayValue, quickSort(right));
 }
 
