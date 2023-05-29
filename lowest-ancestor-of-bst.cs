@@ -96,6 +96,11 @@ public class NoCacheSolution
 	}
 }
 
+/**
+1. check left && right has repeatedly -> if left has & right has, is ancestor
+
+2. check left || right has repeatedly -> if so, contained in this/below on either side
+*/
 public class Solution {
     public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         NodeCache nodeCache = new();
