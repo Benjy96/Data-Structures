@@ -1,14 +1,3 @@
-/**
-
-Performance test to compare non-caching solution against caching solution to recursive solution.
-
-On a small tree, over 200,000 iterations:
-
-Caching-Version Time: 86ms
-Non-caching-Version Time: 174ms
-
-*/
-
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
